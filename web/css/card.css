@@ -1,0 +1,17 @@
+
+.card {
+    background: none;
+    border: #8C7040 2px solid;
+}
+
+.card-body {
+    background-color: none;
+}
+
+.card-text {
+    color: #F8F2EB;
+}
+
+.card-title {
+    color: #F8F2EB;
+}

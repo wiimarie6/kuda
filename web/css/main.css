@@ -1,0 +1,47 @@
+body {
+    background: url('./images/maain-bg.png') no-repeat ;
+}
+a.text {
+    font-size: 20px;
+    color: #8C7040;
+}
+
+a.text:link {
+    font-size: 20px;
+    color: #8C7040;
+}
+
+a.text:visited {
+    font-size: 20px;
+    color: #8C7040;
+}
+
+a.text:focus {
+    font-size: 20px;
+    color: #F8F2EB;
+}
+
+a.text:hover {
+    font-size: 20px;
+    color: #F8F2EB;
+}
+
+a.text:active {
+    font-size: 20px;
+    color: #F8F2EB;
+}
+
+.block-title {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    margin-bottom: 30px;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: #F8F2EB;
+    font-size: 30px;
+    margin: 0;
+}

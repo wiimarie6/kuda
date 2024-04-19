@@ -1,0 +1,194 @@
+@font-face {
+    font-family: 'Handil Pro';
+    src: url(fonts/HandilPro-Medium.otf);
+}
+
+* {
+    font-family: 'Handil Pro';
+
+}
+body {
+    background-color: #1C1B1B;
+}
+
+.container-block{
+    width: clamp(330px, 90%, 1440px);
+    margin: 100px auto;
+}
+.account-link:any-link{
+    color: #8C7040;
+    /* text-decoration: none; */
+}
+.title {
+    color: #F8F2EB;
+    font-size: 40px;
+    line-height: 1.10;
+}
+
+.form-control {
+    background-color: #1C1B1B;
+    border: 1px solid #8C7040;
+    font-size: 20px;
+    text-align: center;
+    padding: 14px 0;
+    color: #F8F2EB;
+    border-radius: 120px;
+}
+
+.form-control::placeholder {
+    color: #F8F2EB;
+}
+
+.form-control:focus {
+    color: inherit;
+    background: inherit;
+    border: 1px solid #8C7040;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
+
+}
+.form-group {
+    margin: 30px 0 15px;
+}
+
+.form-group .btn {
+    border-radius: 120px;
+    background: #8C7040;
+    font-size:  20px;
+    color: #1C1B1B;
+    padding: 15px 80px;
+    border: 1px solid  #8C7040;
+}
+
+.form-group .btn:is(:hover, :focus-visible, :active){
+    border: 1px solid #8C7040;
+    background: inherit;
+    color: #F8F2EB;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
+
+}
+
+form label {
+    font-size: 25px;
+}
+/* nav {
+    padding: 30px 0 !important;
+} */
+.navbar-nav{
+    gap: 60px;
+}
+.nav-link{
+    padding: 0 var(--bs-nav-link-padding-x);
+    color: #8C7040;
+}
+.nav-link.active:any-link {
+    color: #8C7040;
+}
+.nav-link.active {
+    color: #8C7040;
+    border-bottom: 1px #8C7040 solid ;
+}
+.navbar-brand {
+    color: #8C7040;
+    font-size: 24px;
+}
+
+.navbar-collapse {
+    justify-content: end;
+}
+
+.invalid-feedback {
+    color: #277E92;
+    margin: 0;
+}
+.is-valid{
+    border-color:  #8C7040 !important;
+    background: none !important;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
+    padding-right: 0 !important;
+}
+.is-invalid{
+    border-color: #277E92 !important;
+    background: none !important;
+    padding-right: 0 !important;
+
+}
+.is-invalid:focus{
+    box-shadow: 0 0 5px 5px rgba(39, 126, 146, .25) !important;
+
+}
+.is-valid:focus{
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25) !important;
+}
+
+.is-valid ~ label {
+    color: inherit !important;
+}
+
+
+.is-invalid ~ label {
+    color: inherit !important;
+}
+
+/* modal delete */
+
+.modal-content {
+    background-color: #1C1B1B;
+    border: 1px #8C7040 solid;
+    border-radius: 126px;
+    color: #F8F2EB;
+    padding-top: 10px;
+
+}
+
+.modal-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-button {
+    padding: 30px;
+}
+
+.modal-header {
+    display: flex;
+    border-bottom: none;
+    text-align: center;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+.modal-title {
+    font-size: 30px;
+    padding: 10px;
+}
+
+.btn-close {
+    display: none;
+}
+
+.delete-btn {
+    font-family: 'Handil Pro';
+    border-radius: 100px;
+    color: #1C1B1B;
+    background-color: #8C7040;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+}
+
+#delete-btn-cancel {
+    color: #F8F2EB;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.pagination {
+    display: none;
+}
+

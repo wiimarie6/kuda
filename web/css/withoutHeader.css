@@ -1,0 +1,58 @@
+.welcome-container {
+    border-radius: 100px;
+    box-shadow: 0px 0px 61px 3px black;
+    background-color: #1C1B1B;
+}
+.text {
+    font-size: 15px;
+    font-family: 'Handil Pro';
+    color: #8C7040;
+}
+body {
+    background:  #1C1B1B url("./images/background.png") no-repeat center / cover;
+}
+
+.form-group {
+    position: relative;
+}
+.control-label {
+    position: absolute;
+    font-size: 25px;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -20px);
+    background-color: #1C1B1B;
+    
+}
+
+#registr-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+#user-terms {
+    display: none;
+}
+
+.field-user-terms label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+.is-valid ~ label::before {
+    background-color: #8C7040;
+}
+.field-user-terms label::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #8C7040;
+    border-radius: 4px;
+    margin-right: 5px;
+  }
+
+  .signIn-title {
+    margin: 30px;
+  }

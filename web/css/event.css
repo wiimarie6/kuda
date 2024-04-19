@@ -1,0 +1,198 @@
+section {
+    margin-top: 100px;    
+}
+body {
+    background: url('./images/maain-bg.png') no-repeat ;
+}
+.event-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+.event-title {
+    color: #F8F2EB;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+.event-cards {
+    gap: 50px 70px;
+}
+.row {
+    margin-bottom: 100px;
+}
+.event-form {
+    color: #F8F2EB;
+    width: 50%;
+}
+
+.event-view {
+    color: #F8F2EB;
+}
+
+.block-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.event-container .btn {
+    border-radius: 120px;
+    background: #8C7040;
+    font-size:  24px;
+    font-weight: 500;
+    color: #1C1B1B;
+    padding: 15px 80px;
+    border: 1px solid  #8C7040;
+}
+
+.btn-create {
+    border-radius: 120px;
+    background: #8C7040;
+    font-size:  24px;
+    font-weight: 500;
+    color: #1C1B1B;
+    padding: 15px 80px;
+    border: 1px solid  #8C7040;
+}
+
+input::file-selector-button {
+    background-color: transparent !important;
+    color: #F8F2EB !important;
+    border: none;
+    border-radius: 120px;
+    padding-left: 40px !important;
+}
+
+tabel::multiple-input-list {
+    background: none;
+}
+
+.table > :not(caption) > * > * {
+    background-color: transparent;
+    border: none !important;
+}
+
+.list-cell__artists {
+    font-size: 25px;
+    color: #F8F2EB !important;
+    font-weight: 300;
+}
+
+th {
+    padding: 0% !important;
+}
+
+.multiple-input-list__btn {
+    padding: 10px !important;
+}
+select {
+    background-color: #1C1B1B !important;
+    border: 1px solid #8C7040 !important;
+    font-size: 20px !important;
+    text-align: center;
+    padding: 14px 0 !important;
+    color: #F8F2EB !important;
+    border-radius: 120px !important;
+}
+option {
+    color: #F8F2EB;
+    background: #1c1b1b;
+}
+
+
+.event-container {
+    gap: 40px;
+}
+
+.event-subtitle{
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: #8C7040;
+}
+
+.event-container-main {
+    gap: 70px;
+}
+
+.event-container-image{
+    gap: clamp(15px, 2.5vw, 30px);
+}
+
+.event-image {
+    width: clamp( 300px, 25vw ,425px);
+    aspect-ratio: 3/4;
+}
+
+.event-card-image {
+    width: 300px;
+    aspect-ratio: 3/4;
+}
+
+.event-container-like{
+    gap:10px;
+}
+
+.event-like-text {
+    font-size: 35px;
+    color: #8C7040;
+}
+
+.event-container-info{
+    gap: clamp(20px, 3vw, 40px);
+}
+
+.event-title{
+    font-size: 50px ;
+
+}
+
+.event-container-date-buy {
+    gap: clamp(20px, 5vw, 50px);
+}
+.event-date-text{
+    font-size: 35px;
+}
+.event-about {
+    font-size: 35px;
+    width: 700px;
+}
+
+
+.event-artists-items{
+    gap: 20px;
+}
+
+.event-artists-item {
+    padding: 35px 0px;
+}
+
+.event-artists-title {
+    font-size: 35px;
+}
+
+
+.event-container-place{
+    gap: 15px;
+}
+
+.event-place-text{
+    font-size: 35px;
+}
+
+.event-container-price {
+    gap: 15px;
+}
+
+.event-price{
+    font-size: 35px;
+}
+
+.btn-delete-event {
+    border-radius: 120px;
+    background: #8C7040;
+    font-size:  24px;
+    font-weight: 500;
+    color: #1C1B1B;
+    padding: 15px 80px;
+    border: 1px solid  #8C7040;
+}
