@@ -84,6 +84,17 @@ th {
 
 .multiple-input-list__btn {
     padding: 10px !important;
+    color: #F8F2EB;
+    background: none;
+    border: none;
+}
+
+.date-form {
+    padding-right: 10px !important;
+}
+
+datetime-local {
+    background-color: #1C1B1B;
 }
 select {
     background-color: #1C1B1B !important;
@@ -99,6 +110,11 @@ option {
     background: #1c1b1b;
 }
 
+.create-event-p {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
 
 .event-container {
     gap: 40px;

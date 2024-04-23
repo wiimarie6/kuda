@@ -22,10 +22,9 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
 
     <?= $form->field($model, 'description')->textarea() ?>
 
-    <?= $form->field($model, 'date')->widget(\yii\widgets\MaskedInput::class, [
-        'name' => 'date',
-        'mask' => '9999-99-99 99:99:99'
-    ]) ?>
+    <?= $form->field($model, 'date')->textInput(['type' => 'datetime-local',
+    'min' => date('Y-m-d H:i'), 'class' => 'form-control date-form']) ?>
+    
 
     <?= $form->field($model, 'artists')->widget(MultipleInput::className(), [
         'min'               => 1, // should be at least 1 rows

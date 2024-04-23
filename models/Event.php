@@ -46,10 +46,12 @@ class Event extends \yii\db\ActiveRecord
             [['date'], 'datetime', 'format' => 'php:Y-m-d H:i:s'],
             [['genreId', 'userId'], 'integer'],
             [['title', 'location', 'image', 'price'], 'string', 'max' => 255],
-            ['description' , 'string'],
+            ['description', 'string'],
             [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['userId' => 'id']],
             [['genreId'], 'exist', 'skipOnError' => true, 'targetClass' => Genre::class, 'targetAttribute' => ['genreId' => 'id']],
             [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            ['price', 'match', 'pattern' => "/^\d+$/", 'message' => 'В наименовании цены могут быть только цифры'],
+            ['', 'match', 'pattern' => "/^\d+$/", 'message' => 'В наименовании цены могут быть только цифры'],
         ];
     }
 
@@ -138,4 +140,5 @@ class Event extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Genre::class, ['id' => 'genreId']);
     }
+
 }

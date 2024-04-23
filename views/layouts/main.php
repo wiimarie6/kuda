@@ -42,7 +42,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Главная', 'url' => ['/site/index']],
-            ['label' => 'Профиль', 'url' => ['/account/']],
+            !Yii::$app->user->isGuest && !Yii::$app->user->identity->isOrganizer ? ['label' => 'Профиль', 'url' => ['/account/']] : ['label' => 'Профиль', 'url' => ['/organizer/account/']],
             !Yii::$app->user->isGuest && !Yii::$app->user->identity->isAdmin && !Yii::$app->user->identity->isOrganizer ? ['label' => 'Избранное', 'url' => ['/site/event-likes']] : '',
             Yii::$app->user->identity->isOrganizer ? ['label' => 'Ваши мероприятия', 'url' => ['/organizer/']] : '',
             Yii::$app->user->identity->isAdmin ? ['label' => 'Панель администратора', 'url' => ['/admin/']] : '',

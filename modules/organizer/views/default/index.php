@@ -20,7 +20,7 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
 
     <h1 class="event-title text-center"><?= Html::encode($this->title) ?></h1>
 
-    <p>
+    <p class="create-event-p">
         <?= Html::a('Создать мероприятие', ['create'], ['class' => 'btn btn-create']) ?>
     </p>
 
