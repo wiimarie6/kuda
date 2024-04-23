@@ -45,6 +45,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             ['label' => 'Профиль', 'url' => ['/account/']],
             !Yii::$app->user->isGuest && !Yii::$app->user->identity->isAdmin && !Yii::$app->user->identity->isOrganizer ? ['label' => 'Избранное', 'url' => ['/site/event-likes']] : '',
             Yii::$app->user->identity->isOrganizer ? ['label' => 'Ваши мероприятия', 'url' => ['/organizer/']] : '',
+            Yii::$app->user->identity->isAdmin ? ['label' => 'Панель администратора', 'url' => ['/admin/']] : '',
+
             '<li class="nav-item">'
                     . Html::beginForm(['/site/logout'])
                     . Html::submitButton(

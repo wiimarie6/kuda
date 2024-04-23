@@ -15,6 +15,9 @@ $config = [
         'organizer' => [
             'class' => 'app\modules\organizer\Module',
         ],
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+        ],
     ],
     'name' => '¿kuda?',
     'language' => 'ru-RU',

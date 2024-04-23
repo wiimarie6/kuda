@@ -1,0 +1,75 @@
+section {
+    margin-top: 100px;    
+}
+body {
+    background: url('./images/maain-bg.png') no-repeat ;
+}
+.event-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+.genre-title {
+    color: #F8F2EB;
+    margin-bottom: 30px;
+    font-size: 50px;
+}
+
+.btn-create-genre {
+    border-radius: 120px;
+    background: #8C7040;
+    font-size:  24px;
+    font-weight: 500;
+    color: #1C1B1B;
+    padding: 15px 80px;
+    border: 1px solid  #8C7040;
+}
+
+.table > :not(caption) > * > * {
+    background-color: transparent;
+    border: none !important;
+}
+
+thead, tbody, tfoot, tr, td, th {
+    border: none;
+    color: #F8F2EB !important;
+
+}
+
+table {
+    font-size: 24px;
+}
+
+a {
+    text-decoration: none;
+    color: #8C7040;
+}
+
+.summary {
+    display: none;
+}
+
+.btn-update-genre {
+    border-radius: 100px;
+    color: #1C1B1B;
+    background-color: #8C7040;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+}
+
+.btn-delete-genre {
+    color: #F8F2EB;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.btn-back-genre {
+    color: #8C7040;
+    border-bottom: 2px solid #8C7040;
+    border-radius: 0;
+    padding: 0;
+}
