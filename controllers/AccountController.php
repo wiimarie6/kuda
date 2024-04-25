@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\EventLikes;
 use app\models\EventUser;
+use app\models\Genre;
+use app\models\GenreUser;
 use app\models\NewPassword;
 use app\models\User;
 use mysqli;
@@ -24,9 +26,17 @@ class AccountController extends Controller {
     public function actionIndex() {
         $eventsCount = EventUser::find()->where(['userId'=> Yii::$app->user->id])->count();
         $likesCount = EventLikes::find()->where(['userId'=> Yii::$app->user->id])->count();
+        $genreModel = new GenreUser();
+        $genres = Genre::getGenres();
+        $userGenres = GenreUser::getGenresByUser();
+        $genreSelectArray = GenreUser::find()->select('genreId')->where(['userId'=> Yii::$app->user->id])->asArray()->column();
         return $this->render('index', [
             'eventsCount' => $eventsCount,
             'likesCount' => $likesCount,
+            'genreModel' => $genreModel,
+            'genreSelectArray' => $genreSelectArray,
+            'genres' => $genres,
+            'userGenres' => $userGenres,
         ]);
     }
 
@@ -43,6 +53,23 @@ class AccountController extends Controller {
     return $this->render('newPassword', [
         'model' => $model,
     ]);
+}
+public function actionGenres(){
+    $model = new GenreUser();
+
+
+    if ($this->request->isPost && $model->load($this->request->post())){
+        if ($model->validate()){
+            GenreUser::deleteAll(['userId'=> Yii::$app->user->id]);
+            foreach ($model->selectedGenres as $key => $value) {
+                $genreUserModel = new GenreUser();
+                $genreUserModel->userId = Yii::$app->user->id;
+                $genreUserModel->genreId = $value;
+                $genreUserModel->save(false);
+            }
+        }
+    }
+    return $this->redirect('/account');
 }
 
 public function actionDelete()

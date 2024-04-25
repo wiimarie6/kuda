@@ -16,13 +16,11 @@ $this->registerCssFile('@web/css/account.css', ['depends' => BootstrapAsset::cla
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-4 mt-md-4">
-              <p class="mb-3 title-account">Личный кабинет организатора</p>
+              <p class="mb-3 title-account"><?= ($model->roleId ==1)? 'Пользователь' : 'Организатор'?></p>
               <div class="info-account">
                 <?php Pjax::begin(['id' => 'pjax-account']); ?>
-                <p class="text">Наименование организатора: <span class="account-text"><?= Yii::$app->user->identity?->name ?></span></p>
-                <p class="text">Email: <span class="account-text"><?= Yii::$app->user->identity?->email ?></span></p>
-                <p class="text"><?= Html::a('Мероприятия, которые Вы опубликовали:', ['/organizer/'], ['class' => 'text-underline text']) ?> <span class="account-text"><?= $eventsOrg ?> мероприятия</span></p>
-                <p class="text"><?= Html::a('Сменить пароль', ['new-password'], ['class' => 'text-underline text']) ?></p>
+                <p class="text">Имя: <span class="account-text"><?= Html::encode($model->name)?></span></p>
+                <p class="text">Email: <span class="account-text"><?= Html::encode($model->email) ?></span></p>
                 <p class="text"><?= Html::a('Удалить аккаунт', ['delete'], ['class' => 'text-underline text btn-delete']) ?></p>
                 <?php Pjax::end(); ?>
               </div>
@@ -37,7 +35,7 @@ $this->registerCssFile('@web/css/account.css', ['depends' => BootstrapAsset::cla
 
 <?php
 Modal::begin([
-  'title' => 'Вы уверены, что хотите удалить аккаунт?',
+  'title' => 'Вы уверены, что хотите удалить организатора?',
   'id' => 'delete-modal'
 ]);
 ?>

@@ -1,4 +1,11 @@
 $(()=>{
+
+
+
+
+    const url = location.pathname;
+    $(".btn-panel-link[href='"+url+"'").addClass('current');
+    $(".btn-panel-link[href='"+url+"'").addClass('current');
     $("#pjax-account").on("click", ".btn-delete", function(e) {
         e.preventDefault();
         $("#delete-modal").modal("show");
@@ -15,41 +22,60 @@ $(()=>{
         const href = $(this).attr("href");
         $("#delete-btn-confirm").attr("href", href);
     })
-    $("#pjax-event").on("click", "delete-btn-cancel", function(e) {
+    $("#pjax-event").on("click", "#delete-btn-cancel", function(e) {
         e.preventDefault();
         $("#delete-modal").modal("hide");
     })
 
-    $("#pjax-genre").on("click", ".btn-delete-genre", function(e) {
+    $("#main").on("click", ".btn-delete-genre", function(e) {
         e.preventDefault();
         $("#delete-modal").modal("show");
         const href = $(this).attr("href");
         $("#delete-btn-confirm").attr("href", href);
     })
-    $("#pjax-genre").on("click", "delete-btn-cancel", function(e) {
+    $("#main").on("click", "#delete-btn-cancel", function(e) {
         e.preventDefault();
         $("#delete-modal").modal("hide");
     })
 
-    $("#pjax-genre").on("click", ".btn-update-genre", function(e) {
+    $("#main").on("click", ".btn-update-genre", function(e) {
         e.preventDefault();
         $("#update-modal").modal("show");
         const href = $(this).attr("href");
         $("#form-upload").attr("action", href);
     })
-    $("#pjax-genre").on("click", "update-btn-cancel", function(e) {
+    $("#main").on("click", "#update-btn-cancel", function(e) {
         e.preventDefault();
         $("#update-modal").modal("hide");
     })
 
-    $("#pjax-genre").on("click", ".btn-create-genre", function(e) {
+    $("#main").on("click", "#btn-create-genre", function(e) {
         e.preventDefault();
         $("#create-modal").modal("show");
         const href = $(this).attr("href");
         $("#form-create").attr("action", href);
     })
-    $("#pjax-genre").on("click", "create-btn-cancel", function(e) {
+    $("#main").on("click", "#create-btn-cancel", function(e) {
         e.preventDefault();
         $("#create-modal").modal("hide");
+    })
+
+
+
+    $('#genreuser-selectedgenres .genre-checkbox').on('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).toggleClass('genre-checked')
+        $(this).find('input').attr('checked', !$(this).find('input').is(':checked'))
+    });
+
+    $('#genre-select-all').on('click', function(e){
+        e.stopPropagation();
+        e.preventDefault();
+        $('#genreuser-selectedgenres .genre-checkbox').each(function(){
+            $(this).removeClass('genre-checked')
+            $(this).addClass('genre-checked')
+            //  $(this).find('input').attr("checked", true);
+        })
     })
 })

@@ -13,6 +13,7 @@ use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
+$this->registerCssFile('@web/css/panel.css', ['depends' => BootstrapAsset::class]);
 $this->registerCssFile('@web/css/genre.css', ['depends' => BootstrapAsset::class]);
 $this->title = 'Жанры';
 ?>
@@ -20,13 +21,17 @@ $this->title = 'Жанры';
     <?php Pjax::begin([
         'id' => 'pjax-genre'
         ]); ?>
-    <p>
-        <?= Html::a('Назад', ['/admin/'], ['class' => 'btn btn-back-genre']) ?>
-    </p>
+    <h1 class="genre-title"><?= Html::encode('Панель администратора') ?></h1>
+
+        <div class="panel-links">
+            <?= Html::a('Организаторы', ['/admin/'], ['class' => 'btn btn-panel-link']) ?>
+            <?= Html::a('Пользователи', ['/admin/default/users'], ['class' => 'btn btn-panel-link']) ?>
+            <?= Html::a('Жанры', ['/admin/genre'], ['class' => 'btn btn-panel-link']) ?>
+        </div>
     <h1 class="genre-title"><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Создать жанр', ['create'], ['class' => 'btn btn-create-genre']) ?>
+        <?= Html::a('Создать жанр', ['create'], ['class' => 'btn btn-create-genre', 'id' => 'btn-create-genre']) ?>
     </p>
 
     
@@ -56,7 +61,7 @@ Modal::begin([
 ]);
 ?>
 <div class="modal-button">
-    <?= Html::a('Отмена', '', ['class' => 'text text-underline', 'id' => 'btn-cancel']) ?>
+    <?= Html::a('Отмена', '', ['class' => 'text text-underline', 'id' => 'delete-btn-cancel']) ?>
     <?= Html::a('Удалить', ['delete'], ['class' => 'btn delete-btn', 'id' => 'delete-btn-confirm', 'data' => [
         'method' => 'post',
     ]]) ?>
@@ -80,7 +85,7 @@ Modal::begin([
     <?= $form->field($modelUpdate, 'title')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::a('Отмена', '', ['class' => 'text text-underline', 'id' => 'btn-cancel-title']) ?>
+        <?= Html::a('Отмена', '', ['class' => 'text text-underline', 'id' => 'update-btn-cancel']) ?>
         <?= Html::submitButton('Сохранить', ['class' => 'btn genre-modal-btn', 'id' => 'update-btn-confirm']) ?>
 
     </div>
@@ -106,7 +111,7 @@ Modal::begin([
     <?= $form->field($modelCreate, 'title')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::a('Отмена', '', ['class' => 'text text-underline', 'id' => 'btn-cancel']) ?>
+        <?= Html::a('Отмена', '', ['class' => 'text text-underline', 'id' => 'create-btn-cancel']) ?>
         <?= Html::submitButton('Сохранить', ['class' => 'btn genre-modal-btn', 'id' => 'create-btn-confirm']) ?>
     </div>
 

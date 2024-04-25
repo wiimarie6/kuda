@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Genre;
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\BootstrapAsset;
 use yii\bootstrap5\Html;
@@ -23,7 +24,12 @@ $this->registerCssFile('@web/css/account.css', ['depends' => BootstrapAsset::cla
                 <p class="text">Email: <span class="account-text"><?= Yii::$app->user->identity?->email ?></span></p>
                 <p class="text"><?= Html::a('Понравившиеся:', ['site/event-likes'], ['class' => 'text-underline text']) ?> <span class="account-text"><?= $likesCount ?></span></p>
                 <p class="text">Мероприятия, на которые Вы записаны: <span class="account-text"><?= $eventsCount ?></span></p>
-                <p class="text"><a href="" class="account-link">Интересующие жанры</a></p>
+                <p class="text"><a href="" class="account-link" data-bs-toggle="modal" data-bs-target="#genre-modal">Интересующие жанры</a></p>
+                <div class="container-genres" >
+                  <?php foreach($userGenres as $key => $value):?>
+                  <div class="genre-checkbox <?=((strlen($value)>20) ? 'large' : '' )?>"><?=Html::encode($value)?></div>
+                  <?php endforeach;?>
+                </div>
                 <p class="text"><?= Html::a('Сменить пароль', ['new-password'], ['class' => 'text-underline text']) ?></p>
                 <p class="text"><?= Html::a('Удалить аккаунт', ['delete'], ['class' => 'text-underline text btn-delete']) ?></p>
                 <?php Pjax::end(); ?>
@@ -49,6 +55,48 @@ Modal::begin([
     'method' => 'post',
   ]]) ?>
 </div>
+
+<?
+Modal::end();
+?>
+
+
+<?php
+Modal::begin([
+  'id' => 'genre-modal',
+  // 'data' => [
+  //   'bs-backdrop' => 'stati'
+  // ]
+]);
+?>
+
+<div class="form-genre">
+
+  <?php $form = ActiveForm::begin([
+    'action' => '/account/genres'
+  ]
+); ?>
+    <div class="genre-checkbox" id="genre-select-all">
+        Выбрать все
+    </div>
+          <?= $form->field($genreModel, 'selectedGenres', ['template' => '{input}'])->checkboxList($genres, [
+            'item' => function($index, $label, $name, $checked, $value) use ($genreSelectArray){
+              if (in_array($value, $genreSelectArray)){
+
+                $checked = 'checked';
+              }
+
+        return "<label class='col-md-4 genre-checkbox ".(($checked) ? 'genre-checked' :'')." ".((strlen($label)>20) ? 'large' : '' )."' style='font-weight: normal;'><input class='d-none' type='checkbox' {$checked} name='{$name}' value='{$value}'>{$label}</label>";
+
+            }
+          ]) ?>
+      
+          <div class="form-group">
+              <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
+          </div>
+      <?php ActiveForm::end(); ?>
+</div>
+
 
 <?
 Modal::end();

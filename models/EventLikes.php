@@ -68,4 +68,10 @@ class EventLikes extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'userId']);
     }
+
+    public static function getIsLiked($id)
+    {
+        return self::find()->where(['eventId' => $id])->andWhere(['userId'=> Yii::$app->user->id])->one();
+    }
+
 }

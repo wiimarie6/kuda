@@ -1,15 +1,60 @@
 <?php
 
+use app\models\Role;
+use app\models\User;
 use yii\bootstrap5\BootstrapAsset;
 use yii\bootstrap5\Html;
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
+use yii\helpers\Url;
+use yii\widgets\Pjax;
 $this->title = 'Панель администратора';
+$this->registerCssFile('@web/css/panel.css', ['depends' => BootstrapAsset::class]);
 $this->registerCssFile('@web/css/genre.css', ['depends' => BootstrapAsset::class]);
 
 ?>
 <div class="admin-default-index">
 <h1 class="genre-title"><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Жанры', ['/admin/genre'], ['class' => 'btn btn-create-genre']) ?>
-    </p>
+    <div class="panel-links">
+        <?= Html::a('Организаторы', ['/admin/'], ['class' => 'btn btn-panel-link']) ?>
+        <?= Html::a('Пользователи', ['/admin/default/users'], ['class' => 'btn btn-panel-link']) ?>
+        <?= Html::a('Жанры', ['/admin/genre'], ['class' => 'btn btn-panel-link']) ?>
+</div>
+
+    <h1 class="genre-title"><?=$title?></h1>
+
+    <?php Pjax::begin(); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+
+            'id',
+            [
+                'attribute' => 'name',
+                'label' => 'Имя'
+            ],
+            [
+                'attribute' => 'email',
+                'label' => 'Почта',
+            ],
+            [
+                'attribute' => 'createAt',
+                'label' => 'Создан'
+            ],
+            //'updateAt',
+            //'authKey',
+            [
+                'content' => function (User $model) {
+                    return Html::a('Посмотреть', ['view', 'id' => $model->id], ['class' => 'btn btn-view']) .
+                        Html::a('Удалить', ['delete', 'id' => $model->id], ['class' => 'btn btn-delete-genre',]);
+                }
+            ],
+        ],
+    ]); ?>
+
+    <?php Pjax::end(); ?>
 </div>

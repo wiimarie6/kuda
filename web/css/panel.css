@@ -1,0 +1,31 @@
+.btn-view {
+    border-radius: 100px;
+    color: #1C1B1B;
+    background-color: #8C7040;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+}
+.panel-links {
+    display: flex;
+    gap: clamp(20px, 3vw, 40px);
+    margin-bottom: clamp(30px, 3.5vw, 50px);
+    flex-wrap: wrap;
+}
+
+.btn-panel-link {
+    border-radius: 120px;
+    background: #8C7040;
+    font-size:  24px;
+    font-weight: 500;
+    color: #1C1B1B;
+    padding: 15px 80px;
+    border: 1px solid  #8C7040;
+}
+
+.btn-panel-link.current {
+    background: none;
+    border: 1px solid #F8F2EB;
+    color: #F8F2EB;
+}

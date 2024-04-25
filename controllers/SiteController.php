@@ -11,6 +11,8 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Event;
+use app\models\EventLikes;
+use app\models\GenreUser;
 use yii\bootstrap5\ActiveForm;
 use yii\data\ActiveDataProvider;
 
@@ -191,7 +193,18 @@ class SiteController extends Controller
 
     public function actionEventLikes()
     {
-        return $this->render('eventLikes', []);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Event::find()->rightJoin('event_likes', 'event_likes.eventId = event.id')->where(['event_likes.userId' => Yii::$app->user->id]),
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                ]
+            ]
+                ]);
+        return $this->render('eventLikes', [
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     public function actionEventAll()
@@ -209,6 +222,23 @@ class SiteController extends Controller
 
         ]);
     }
+
+    public function actionLike($id)
+    {
+        $model = $this->findModel($id);
+
+        if (!$eventLike=EventLikes::getIsLiked($id)){
+            $eventLike= new EventLikes();
+            $eventLike->userId = Yii::$app->user->id;
+            $eventLike->eventId= $id;
+            $eventLike->save();
+        } else {
+            $eventLike->delete();
+        }
+        return $this->redirect(['view', 'id' => $id]);
+    }
+
+   
 
     /**
      * Finds the Event model based on its primary key value.

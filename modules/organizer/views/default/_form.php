@@ -23,7 +23,7 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
     <?= $form->field($model, 'description')->textarea() ?>
 
     <?= $form->field($model, 'date')->textInput(['type' => 'datetime-local',
-    'min' => date('Y-m-d H:i'), 'class' => 'form-control date-form']) ?>
+    'min' => date('Y-m-d H:i') , 'class' => 'form-control date-form']) ?>
     
 
     <?= $form->field($model, 'artists')->widget(MultipleInput::className(), [

@@ -2,7 +2,10 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\User;
+use app\models\UserSearch;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 
 /**
@@ -22,6 +25,41 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new UserSearch();
+        $query = User::find()->where(['roleId'=> 3]);
+        $dataProvider = $searchModel->search($this->request->queryParams, $query);
+
+        return $this->render('index', [
+            'title' => 'Организаторы',
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    public function actionUsers()
+    {
+        $searchModel = new UserSearch();
+        $query = User::find()->where(['roleId'=> 1]);
+        $dataProvider = $searchModel->search($this->request->queryParams, $query);
+
+        return $this->render('index', [
+            'title' => 'Пользователи',
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = User::findOne(['id' => $id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use app\models\EventLikes;
 use app\models\Genre;
 use yii\bootstrap5\BootstrapAsset;
 use yii\bootstrap5\Html;
@@ -25,7 +26,18 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
                 <?= Html::img('@web/uploads/' . $model->image, ['class' => 'event-image']) ?>
 
                 <div class="event-container-like d-flex align-items-center">
-                    <img src="" class="event-like-image"/> <span class="event-like-text"> Хочу сходить</span>
+                    <a href="/site/like?id=<?=$model->id?>" class="text-decoration-none d-flex align-items-center">
+
+                        <?=
+                        (EventLikes::getIsLiked($model->id)) ?
+                        Html::img('@web/css/images/liked.png', ['class' => 'event-like-image'])
+                        :
+                        Html::img('@web/css/images/unliked.png', ['class' => 'event-like-image'])
+
+                        ?>
+                        
+                        <span class="event-like-text"> Хочу сходить</span>
+                    </a>
                 </div>
             </div>
 
@@ -92,7 +104,7 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
 <?php
 Modal::begin([
   'title' => 'Вы уверены, что хотите удалить аккаунт?',
-  'id' => 'delete-modal'
+  'id' => 'delete-modal',
 ]);
 ?>
 <div class="modal-button">

@@ -26,6 +26,16 @@ body {
     border: 1px solid  #8C7040;
 }
 
+.btn-create-genre:hover {
+    border-radius: 120px;
+    background: none;
+    font-size:  24px;
+    font-weight: 500;
+    color: #F8F2EB;
+    padding: 15px 80px;
+    border: 1px solid  #F8F2EB;
+}
+
 .table > :not(caption) > * > * {
     background-color: transparent;
     border: none !important;
@@ -48,6 +58,10 @@ a {
 
 .summary {
     display: none;
+}
+
+.genre-index {
+    margin-top: 100px;
 }
 
 .btn-update-genre {

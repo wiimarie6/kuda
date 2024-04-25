@@ -13,6 +13,10 @@ body {
 
 .container-block{
     width: clamp(330px, 90%, 1440px);
+    margin: 0 auto;
+}
+
+.admin-default-index {
     margin: 100px auto;
 }
 .account-link:any-link{
@@ -51,6 +55,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 }
 
 .form-group .btn {
