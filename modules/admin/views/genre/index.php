@@ -61,7 +61,7 @@ Modal::begin([
 ]);
 ?>
 <div class="modal-button">
-    <?= Html::a('Отмена', '', ['class' => 'text text-underline', 'id' => 'delete-btn-cancel']) ?>
+    <?= Html::a('Отмена', '', ['class' => 'text text-underline btn-cancel-genre', 'id' => 'delete-btn-cancel']) ?>
     <?= Html::a('Удалить', ['delete'], ['class' => 'btn delete-btn', 'id' => 'delete-btn-confirm', 'data' => [
         'method' => 'post',
     ]]) ?>
@@ -85,7 +85,7 @@ Modal::begin([
     <?= $form->field($modelUpdate, 'title')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::a('Отмена', '', ['class' => 'text text-underline', 'id' => 'update-btn-cancel']) ?>
+        <?= Html::a('Отмена', '', ['class' => 'text text-underline btn-cancel-genre', 'id' => 'update-btn-cancel']) ?>
         <?= Html::submitButton('Сохранить', ['class' => 'btn genre-modal-btn', 'id' => 'update-btn-confirm']) ?>
 
     </div>
@@ -111,7 +111,7 @@ Modal::begin([
     <?= $form->field($modelCreate, 'title')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::a('Отмена', '', ['class' => 'text text-underline', 'id' => 'create-btn-cancel']) ?>
+        <?= Html::a('Отмена', '', ['class' => 'text text-underline btn-cancel-genre', 'id' => 'create-btn-cancel']) ?>
         <?= Html::submitButton('Сохранить', ['class' => 'btn genre-modal-btn', 'id' => 'create-btn-confirm']) ?>
     </div>
 

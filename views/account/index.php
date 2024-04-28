@@ -14,7 +14,7 @@ $this->registerCssFile('@web/css/account.css', ['depends' => BootstrapAsset::cla
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-8">
         <div class="card text-white account-container">
-          <div class="card-body p-5 text-center">
+          <div class="card-body p-4 text-center">
 
             <div class="mb-md-4 mt-md-4">
               <p class="mb-3 title-account">Личный кабинет</p>
@@ -27,7 +27,7 @@ $this->registerCssFile('@web/css/account.css', ['depends' => BootstrapAsset::cla
                 <p class="text"><a href="" class="account-link" data-bs-toggle="modal" data-bs-target="#genre-modal">Интересующие жанры</a></p>
                 <div class="container-genres" >
                   <?php foreach($userGenres as $key => $value):?>
-                  <div class="genre-checkbox <?=((strlen($value)>20) ? 'large' : '' )?>"><?=Html::encode($value)?></div>
+                  <div class="genre-checkbox genre-checkbox-index <?=((strlen($value)>20) ? 'large large-index' : '' )?>"><?=Html::encode($value)?></div>
                   <?php endforeach;?>
                 </div>
                 <p class="text"><?= Html::a('Сменить пароль', ['new-password'], ['class' => 'text-underline text']) ?></p>
@@ -45,17 +45,23 @@ $this->registerCssFile('@web/css/account.css', ['depends' => BootstrapAsset::cla
 
 <?php
 Modal::begin([
-  'title' => 'Вы уверены, что хотите удалить аккаунт?',
+  'title' => 'Для удаления аккаунта введите пароль',
   'id' => 'delete-modal'
 ]);
 ?>
+<?php $form = ActiveForm::begin([
+  'id' => 'account-delete-form',
+]); ?>
 <div class="modal-button">
-  <?= Html::a('Отмена', '', ['class' => 'btn text text-underline', 'id' => 'delete-btn-cancel']) ?>
-  <?= Html::a('Удалить', ['delete'], ['class' => 'btn delete-btn', 'id' => 'delete-btn-confirm', 'data' => [
-    'method' => 'post',
-  ]]) ?>
-</div>
 
+<?= $form->field($model, 'currentPassword')->passwordInput() ?>
+
+  <div class="form-group">
+    <?= Html::a('Отмена', '', ['class' => 'btn text text-underline', 'id' => 'delete-btn-cancel']) ?>
+    <?= Html::submitButton('Удалить', ['class' => 'btn btn-primary']) ?>
+  </div>
+</div>
+<?php ActiveForm::end(); ?>
 <?
 Modal::end();
 ?>

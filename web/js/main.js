@@ -9,7 +9,6 @@ $(()=>{
     $("#pjax-account").on("click", ".btn-delete", function(e) {
         e.preventDefault();
         $("#delete-modal").modal("show");
-        const href = $(this).attr("href");
     })
     $("#pjax-account").on("click", "delete-btn-cancel", function(e) {
         e.preventDefault();

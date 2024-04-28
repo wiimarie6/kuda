@@ -112,12 +112,13 @@ form label {
     border-color:  #8C7040 !important;
     background: none !important;
     box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
-    padding-right: 10 !important;
+    padding-right: 0 !important;
+
 }
 .is-invalid{
     border-color: #277E92 !important;
     background: none !important;
-    padding-right: 10 !important;
+    padding-right: 0 !important;
 
 }
 .is-invalid:focus{
@@ -217,6 +218,14 @@ form label {
 }
 .pagination {
     display: none;
+}
+
+.btn-cancel-genre {
+    color: #F8F2EB;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 20px;
 }
 
 

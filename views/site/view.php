@@ -43,7 +43,7 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
 
             <div class="event-container-info d-flex flex-column">
 
-                <h2 class="event-title"><?= Html::encode($model->title) ?></h2>
+                <h2 class="event-title-view"><?= Html::encode($model->title) ?></h2>
                 <div class="event-container-date-buy d-flex justify-content-between align-items-center flex-wrap">
                     <div class="event-container-date">
                         <h5 class="event-subtitle">Дата проведения:</h5>

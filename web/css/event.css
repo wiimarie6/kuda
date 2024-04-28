@@ -144,22 +144,25 @@ option {
     aspect-ratio: 3/4;
 }
 
+.event-like-image {
+    width: 40px;
+}
+
 .event-container-like{
     gap:10px;
 }
 
 .event-like-text {
-    font-size: 35px;
+    font-size: 24px;
     color: #8C7040;
 }
 
-.event-container-info{
+.event-container-info {
     gap: clamp(20px, 3vw, 40px);
 }
 
-.event-title{
-    font-size: 50px ;
-
+.event-title-view {
+    font-size: 50px;
 }
 
 .event-container-date-buy {
@@ -178,16 +181,22 @@ option {
     gap: 20px;
 }
 
-.event-artists-item {
+/*.event-artists-item {
     padding: 35px 0px;
-}
+}*/
 
 .event-artists-title {
     font-size: 35px;
 }
 
 
-.event-container-place{
+.event-container-place {
+    gap: 15px;
+}
+
+.event-container-artists {
+    display: flex;
+    flex-direction: column;
     gap: 15px;
 }
 
@@ -197,9 +206,10 @@ option {
 
 .event-container-price {
     gap: 15px;
+    margin-bottom: 10rem;
 }
 
-.event-price{
+.event-price {
     font-size: 35px;
 }
 
