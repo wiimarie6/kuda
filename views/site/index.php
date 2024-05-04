@@ -35,7 +35,7 @@ $dataProvider = new ActiveDataProvider([
     <section>
       <div class="block-title">
         <h1 class="main-title">Предстоящие</h1>
-        <?= Html::a('Посмотреть все...', ['site/event-likes'], ['class' => 'text-underline text']) ?>
+        <?= Html::a('Посмотреть все...', ['site/event-upcoming'], ['class' => 'text-underline text']) ?>
       </div>
       <div class="row row-cols-1 row-cols-md-4 g-4">
 
@@ -53,7 +53,7 @@ $dataProvider = new ActiveDataProvider([
 
       <div class="block-title">
         <h1 class="main-title">Новые</h1>
-        <?= Html::a('Посмотреть все...', ['site/event-likes'], ['class' => 'text-underline text']) ?>
+        <?= Html::a('Посмотреть все...', ['site/event-new'], ['class' => 'text-underline text']) ?>
       </div>
       <div class="row row-cols-1 row-cols-md-4 g-4">
       <?php Pjax::begin(); ?>

@@ -23,7 +23,7 @@ $this->registerCssFile('@web/css/account.css', ['depends' => BootstrapAsset::cla
                 <p class="text">Имя: <span class="account-text"><?= Yii::$app->user->identity?->name ?></span></p>
                 <p class="text">Email: <span class="account-text"><?= Yii::$app->user->identity?->email ?></span></p>
                 <p class="text"><?= Html::a('Понравившиеся:', ['site/event-likes'], ['class' => 'text-underline text']) ?> <span class="account-text"><?= $likesCount ?></span></p>
-                <p class="text">Мероприятия, на которые Вы записаны: <span class="account-text"><?= $eventsCount ?></span></p>
+                <p class="text"><?= Html::a('Мероприятия, на которые Вы записаны: ', ['site/event-user'], ['class' => 'text-underline text']) ?><span class="account-text"><?= $eventsCount ?></span></p>
                 <p class="text"><a href="" class="account-link" data-bs-toggle="modal" data-bs-target="#genre-modal">Интересующие жанры</a></p>
                 <div class="container-genres" >
                   <?php foreach($userGenres as $key => $value):?>
@@ -51,6 +51,7 @@ Modal::begin([
 ?>
 <?php $form = ActiveForm::begin([
   'id' => 'account-delete-form',
+  'action' => '/account/delete'
 ]); ?>
 <div class="modal-button">
 

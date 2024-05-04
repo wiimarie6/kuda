@@ -60,7 +60,6 @@ class CurrentPassword extends Model
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
-
             if (!$user || !$user->validatePassword($this->currentPassword)) {
                 $this->addError($attribute, 'Неверный пароль.');
             }
@@ -75,8 +74,8 @@ class CurrentPassword extends Model
     public function deleteAccount() {
         if ($this->validate()) {
             $user = User::findOne(Yii::$app->user->id);
-            Yii::$app->user->logout();
             if ($user->delete()) {
+                Yii::$app->user->logout();
                 return true;
             }
         } else {

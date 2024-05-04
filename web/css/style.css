@@ -216,6 +216,14 @@ form label {
     padding-right: 30px;
     font-size: 20px;
 }
+
+#delete-btn-cancel {
+    color: #F8F2EB;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 20px;
+}
 .pagination {
     display: none;
 }

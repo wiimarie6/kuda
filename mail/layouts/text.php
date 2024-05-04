@@ -8,6 +8,6 @@
 
 $this->beginPage();
 $this->beginBody();
-echo $content;
+echo 'qweqweqwe';
 $this->endBody();
 $this->endPage();

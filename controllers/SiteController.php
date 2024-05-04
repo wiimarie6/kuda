@@ -12,7 +12,11 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Event;
 use app\models\EventLikes;
+use app\models\EventUser;
+use app\models\ForgotPassword;
+use app\models\Genre;
 use app\models\GenreUser;
+use app\models\User;
 use yii\bootstrap5\ActiveForm;
 use yii\data\ActiveDataProvider;
 
@@ -54,7 +58,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $query = Event::find();
+        if (Yii::$app->user->isGuest){
+            return $this->redirect('/site/welcome');
+        } elseif (!GenreUser::getGenresByUser()){
+            return $this->redirect('/site/genres');
+        }
+        $userGenres = GenreUser::find()->select('genreId')->where(['userId'=> Yii::$app->user->id])->asArray()->column();
+        $query = Event::find()->where(['genreId' => $userGenres]);
 
         $eventsSoon = new ActiveDataProvider([
             'query' => $query,
@@ -135,7 +145,7 @@ class SiteController extends Controller
     $this->layout = 'withoutHeader';
 
     $model = new \app\models\User();
-
+   
     if ($model->load(Yii::$app->request->post())) {
         if (Yii::$app->request->isAjax) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -143,14 +153,92 @@ class SiteController extends Controller
         }
         if ($model->save()){
             if (Yii::$app->user->login($model)){
-                return $this->goHome();
+                Yii::$app->mailer->compose('verification', ['userEmail' => $model->email, 'link' => $model->emailLink])->setFrom(env('YANDEX_LOGIN'))->setTo($model->email)->setSubject('kuda Подтверждение почты')->send();
+
+                return $this->redirect('/site/email-confirm/');
             }
         }
     }
+
     return $this->render('signUp', [
         'model' => $model,
+        
     ]);
 }
+    public function actionEmailVerify($token)
+    {
+
+    $user = User::findOne(['emailLink'=>$token]);
+    if ($user){
+        if (!$user->getIsVerified()){
+
+            $user->emailVerifiedAt = date('Y-m-d H:i:s');
+            $user->emailLink = null;
+            $user->save(false);
+            return $this->redirect('/site/genres');
+        } else {
+            return $this->redirect('/site/genres');
+        }
+    }
+    return $this->redirect('/site/welcome');
+    }
+
+    public function actionEmailConfirm() 
+    {
+        $this->layout = 'withoutHeader';
+
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect('/site/welcome');
+        } elseif (Yii::$app->user->identity->isVerified){
+            return $this->redirect('/site/');
+        }
+        if ($this->request->isPost){
+
+                Yii::$app->mailer->compose('verification', ['userEmail' => Yii::$app->user->identity->email, 'link' => Yii::$app->user->identity->emailLink])->setFrom(env('YANDEX_LOGIN'))->setTo(Yii::$app->user->identity->email)->setSubject('kuda Подтверждение почты')->send();
+                Yii::$app->session->setFlash('info', 'Сообщение отправлено');
+                return $this->refresh();
+        }
+        return $this->render('emailConfirm');
+    }
+    public function actionForgotConfirm()
+    {
+        $this->layout = 'withoutHeader';
+        $model = new LoginForm();
+
+        if ($this->request->isPost && $model->load($this->request->post())){
+            
+            if ($model->validate('email')){
+                $user = User::findByEmail($model->email);
+                if ($user) {
+
+                    $user->emailLink = Yii::$app->security->generateRandomString();
+                    $user->save(false);
+                }
+                Yii::$app->mailer->compose('changePassword', ['userEmail' => $model->email, 'link' => $user->emailLink ?? Yii::$app->security->generateRandomString()])->setFrom(env('YANDEX_LOGIN'))->setTo($model->email)->setSubject('kuda Смена пароля')->send();
+                Yii::$app->session->setFlash('info', 'Сообщение отправлено на указанную почту');
+                return $this->refresh();
+            }
+        }
+        return $this->render('forgotConfirm',[
+            'model' => $model
+        ]);
+    }
+
+    public function actionForgotPassword($token)
+    {
+        $this->layout = 'withoutHeader';
+        $model = new ForgotPassword();
+        $model->token = $token;
+        if ($this->request->isPost && $model->load($this->request->post())){
+            if ($model->changePassword()){
+                return $this->redirect('/site/');
+            }
+        }
+        
+        return $this->render('forgotPassword', [
+            'model' => $model,
+        ]);
+    }
     /**
      * Logout action.
      *
@@ -163,37 +251,14 @@ class SiteController extends Controller
         return $this->redirect('/site/welcome');
     }
 
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
 
     public function actionEventLikes()
     {
-
+        if (Yii::$app->user->isGuest){
+            return $this->redirect('/site/welcome');
+        } elseif (!GenreUser::getGenresByUser()){
+            return $this->redirect('/site/genres');
+        }
         $dataProvider = new ActiveDataProvider([
             'query' => Event::find()->rightJoin('event_likes', 'event_likes.eventId = event.id')->where(['event_likes.userId' => Yii::$app->user->id]),
             'sort' => [
@@ -207,15 +272,102 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionEventUser()
+    {
+        if (Yii::$app->user->isGuest){
+            return $this->redirect('/site/welcome');
+        } elseif (!GenreUser::getGenresByUser()){
+            return $this->redirect('/site/genres');
+        }
+        $dataProvider = new ActiveDataProvider([
+            'query' => Event::find()->rightJoin('event_user', 'event_user.eventId = event.id')->where(['event_user.userId' => Yii::$app->user->id]),
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                ]
+            ]
+                ]);
+        return $this->render('eventUser', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     public function actionEventAll()
     {
+        if (Yii::$app->user->isGuest){
+            return $this->redirect('/site/welcome');
+        } elseif (!GenreUser::getGenresByUser()){
+            return $this->redirect('/site/genres');
+        }
         return $this->render('eventAll', []);
+    }
+
+    public function actionEventUpcoming()
+    {
+        if (Yii::$app->user->isGuest){
+            return $this->redirect('/site/welcome');
+        } elseif (!GenreUser::getGenresByUser()){
+            return $this->redirect('/site/genres');
+        }
+        $userGenres = GenreUser::find()->select('genreId')->where(['userId'=> Yii::$app->user->id])->asArray()->column();
+        $query = Event::find()->where(['genreId' => $userGenres]);
+        $eventsSoon = new ActiveDataProvider([
+            'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'date' => SORT_ASC
+                ]
+                ],
+        ]);
+        return $this->render('eventUpcoming', [
+            'eventsSoon' => $eventsSoon,
+        ]);
+    }
+
+    public function actionEventNew()
+    {
+        if (Yii::$app->user->isGuest){
+            return $this->redirect('/site/welcome');
+        } elseif (!GenreUser::getGenresByUser()){
+            return $this->redirect('/site/genres');
+        }
+        $userGenres = GenreUser::find()->select('genreId')->where(['userId'=> Yii::$app->user->id])->asArray()->column();
+        $query = Event::find()->where(['genreId' => $userGenres]);
+
+        $eventsNew = new ActiveDataProvider([
+            'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'createdAt' => SORT_DESC,
+                    ]
+                ],
+        ]);
+        return $this->render('eventNew', [
+            'eventsNew' => $eventsNew,
+        ]);
     }
 
     public function actionView($id)
     {
+        if (Yii::$app->user->isGuest){
+            return $this->redirect('/site/welcome');
+        } elseif (!GenreUser::getGenresByUser()){
+            return $this->redirect('/site/genres');
+        }
         $model = $this->findModel($id);
         $artistsModel = Artist::getArtistsByEventId($model->id);
+        if ($this->request->isPost){
+            if (!EventUser::getIsSignedUp($model->id)){
+                
+                $eventUser = new EventUser();
+                $eventUser->userId = Yii::$app->user->id;
+                $eventUser->eventId = $model->id;
+                $eventUser->save();
+            } else {
+                $eventUser = EventUser::findOne(['userId' => Yii::$app->user->id, 'eventId' => $model->id]);
+                $eventUser->delete();
+            }
+        }
         return $this->render('view', [
             'model' => $model,
             'artistsModel' => $artistsModel
@@ -225,6 +377,11 @@ class SiteController extends Controller
 
     public function actionLike($id)
     {
+        if (Yii::$app->user->isGuest){
+            return $this->redirect('/site/welcome');
+        } elseif (!GenreUser::getGenresByUser()){
+            return $this->redirect('/site/genres');
+        }
         $model = $this->findModel($id);
 
         if (!$eventLike=EventLikes::getIsLiked($id)){
@@ -238,6 +395,36 @@ class SiteController extends Controller
         return $this->redirect(['view', 'id' => $id]);
     }
 
+    public function actionGenres(){
+    $this->layout = 'withoutHeader';
+    if (Yii::$app->user->isGuest){
+        return $this->redirect('/site/welcome');
+    }
+        $model = new GenreUser();
+        $genres = Genre::getGenres();
+        $genreSelectArray = GenreUser::find()->select('genreId')->where(['userId'=> Yii::$app->user->id])->asArray()->column();
+    
+    if ($genreSelectArray){
+        return $this->redirect('/site/');
+    }
+        if ($this->request->isPost && $model->load($this->request->post())){
+            if ($model->validate()){
+                GenreUser::deleteAll(['userId'=> Yii::$app->user->id]);
+                foreach ($model->selectedGenres as $key => $value) {
+                    $genreUserModel = new GenreUser();
+                    $genreUserModel->userId = Yii::$app->user->id;
+                    $genreUserModel->genreId = $value;
+                    $genreUserModel->save(false);
+                }
+                return $this->redirect('/');
+            }
+        }
+        return $this->render('genres', [
+            'model' => $model,
+            'genres' => $genres,
+        'genreSelectArray' => $genreSelectArray
+        ]);
+    }
    
 
     /**

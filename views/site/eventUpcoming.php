@@ -13,18 +13,8 @@ $this->registerCssFile('@web/css/main.css', ['depends' => BootstrapAsset::class]
 $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class]);
 $this->registerCssFile('@web/css/card.css', ['depends' => BootstrapAsset::class]);
 
-$this->title = 'Все мероприятия';
+$this->title = 'Предстоящие мероприятия';
 
-$query = Event::find();
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'sort' => [
-                'defaultOrder' => [
-                    'date' => SORT_ASC
-                ]
-            ]
-        ]);
 ?>
 <div class="site-index">
 <section>
@@ -33,9 +23,9 @@ $query = Event::find();
 <h1 class="event-title"><?= Html::encode($this->title) ?></h1>
 
 <?= ListView::widget([
-    'dataProvider' => $dataProvider,
+    'dataProvider' => $eventsSoon,
     'itemView' => 'card',
-    'layout' => '<div class="d-flex flex-wrap event-cards ">{items}</div>{pager}'
+    'layout' => '<div class="d-flex flex-wrap event-cards ">{items}</div>{pager}',
 ]); ?>
 
 <?php Pjax::end(); ?> 

@@ -16,6 +16,8 @@ use yii\web\IdentityInterface;
  * @property string $createAt
  * @property string|null $updateAt
  * @property string $authKey
+ * @property string $emailLink
+ * @property string $emailVerifiedAt
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -73,6 +75,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $this->authKey = Yii::$app->security->generateRandomString();
         $this->password = Yii::$app->security->generatePasswordHash($this->password);
         $this->roleId = 1;
+        $this->emailLink = Yii::$app->security->generateRandomString();
     }
     return true;
 }
@@ -120,5 +123,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function validateAuthKey($authKey)
     {
         return $this->authKey === $authKey;
+    }
+    public function getIsVerified()
+    {
+        return $this->emailVerifiedAt ?? false;
     }
 }

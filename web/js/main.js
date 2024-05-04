@@ -74,7 +74,7 @@ $(()=>{
         $('#genreuser-selectedgenres .genre-checkbox').each(function(){
             $(this).removeClass('genre-checked')
             $(this).addClass('genre-checked')
-            //  $(this).find('input').attr("checked", true);
+             $(this).find('input').attr("checked", true);
         })
     })
 })

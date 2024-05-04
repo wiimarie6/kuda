@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers;
+namespace app\modules\admin\controllers;
 
 use app\models\CurrentPassword;
 use app\models\EventLikes;
@@ -19,8 +19,8 @@ class AccountController extends Controller {
 
     public function actions() {
         //TODO: Организатор
-        if (Yii::$app->user->isGuest) {
-            $this->goHome();
+        if (Yii::$app->user->isGuest || !Yii::$app->user->identity->isAdmin) {
+            $this->goBack();
         }
     }
 
@@ -43,7 +43,7 @@ class AccountController extends Controller {
         ]);
     }
 
-    public function actionNewPassword($token)
+    public function actionNewPassword()
 {
     $model = new \app\models\NewPassword();
     if ($model->load(Yii::$app->request->post())) {
@@ -79,6 +79,8 @@ public function actionDelete()
 {
     $model = new \app\models\CurrentPassword();
     if ($this->request->isPost && $model->load($this->request->post())) {
+        var_dump($model->validate());
+        die;
         if ($model->deleteAccount()) {
             return $this->redirect("/site/welcome");
         }

@@ -50,7 +50,7 @@ $this->registerCssFile('@web/css/welcome.css', ['depends' => BootstrapAsset::cla
 
             <?php ActiveForm::end(); ?>
 
-            <?= Html::a('Забыли пароль?', ['welcome'], ['class' => 'text-underline text']) ?>
+            <?= Html::a('Забыли пароль?', ['/site/forgot-confirm'], ['class' => 'text-underline text']) ?>
         
     </div>
 </div>

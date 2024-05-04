@@ -4,6 +4,7 @@ namespace app\modules\admin\controllers;
 
 use app\models\User;
 use app\models\UserSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -16,6 +17,13 @@ class UserController extends Controller
     /**
      * @inheritDoc
      */
+    public function actions()
+    {
+        if (Yii::$app->user->isGuest || !Yii::$app->user->identity->isAdmin) {
+            $this->goBack();
+        }
+    }
+    
     public function behaviors()
     {
         return array_merge(

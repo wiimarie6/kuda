@@ -17,7 +17,7 @@ $this->title = 'Ваши мероприятия';
 $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class]);
 ?>
 <div class="event-index">
-
+    <section>
     <h1 class="event-title text-center"><?= Html::encode($this->title) ?></h1>
 
     <p class="create-event-p">
@@ -34,5 +34,5 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
     ]); ?>
 
     <?php Pjax::end(); ?>
-
+    </section>
 </div>

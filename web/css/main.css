@@ -1,5 +1,6 @@
 body {
     background: url('./images/maain-bg.png') no-repeat ;
+    background-attachment: scroll;
 }
 a.text {
     font-size: 20px;

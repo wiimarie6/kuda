@@ -1,8 +1,9 @@
 section {
-    margin-top: 100px;    
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 body {
-    background: url('./images/maain-bg.png') no-repeat ;
+    background: url('./images/maain-bg.png') no-repeat center fixed  ;
 }
 .event-section {
     display: flex;

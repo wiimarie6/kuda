@@ -23,15 +23,11 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
         <div class="event-container-main d-flex flex-wrap justify-content-center justify-content-lg-start">
             <div class="event-container-image d-flex flex-column">
                 <?= Html::img('@web/uploads/' . $model->image, ['class' => 'event-image']) ?>
-
-                <div class="event-container-like d-flex align-items-center">
-                    <img src="" class="event-like-image"/> <span class="event-like-text"> Хочу сходить</span>
-                </div>
             </div>
 
             <div class="event-container-info d-flex flex-column">
 
-                <h2 class="event-title"><?= Html::encode($model->title) ?></h2>
+            <h2 class="event-title-view"><?= Html::encode($model->title) ?></h2>
                 <div class="event-container-date-buy d-flex justify-content-between align-items-center flex-wrap">
                     <div class="event-container-date">
                         <h5 class="event-subtitle">Дата проведения:</h5>
@@ -50,6 +46,13 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
             </div>
         </div>
 
+        <div class="event-container-about">
+                    <h5 class="event-subtitle">
+                        Жанр:
+                    </h5>
+                    <p class="event-about "><?= Html::encode(Genre::getGenreById($model->genreId)) ?></p>
+                </div>
+                
         <div class="event-container-artists">
             <h5 class="event-subtitle">Исполнители:</h5>
             <div class="event-artists-items d-flex flex-wrap align-items-center">
@@ -91,7 +94,7 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
 
 <?php
 Modal::begin([
-  'title' => 'Вы уверены, что хотите удалить аккаунт?',
+  'title' => 'Вы уверены, что хотите удалить мероприятие?',
   'id' => 'delete-modal'
 ]);
 ?>

@@ -68,4 +68,9 @@ class EventUser extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'userId']);
     }
+
+    public static function getIsSignedUp($eventId)
+    {
+        return self::findOne(['userId' => Yii::$app->user->id, 'eventId' => $eventId]) ?? false;
+    } 
 }

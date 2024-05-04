@@ -1,6 +1,7 @@
 <?php
 
 use app\models\EventLikes;
+use app\models\EventUser;
 use app\models\Genre;
 use yii\bootstrap5\BootstrapAsset;
 use yii\bootstrap5\Html;
@@ -50,9 +51,9 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
                         <span class="event-date-text"><?=Yii::$app->formatter->asDate($model->date, 'php:d.m.Y H:i')?></span>
                     </div>
 
-                    <?= Html::button('Купить билеты', ['class' => 'btn'])?>
+
+                    <?=(!EventUser::getIsSignedUp($model->id)) ?Html::a('Купить билеты',['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]) : Html::a('Отписаться', ['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']])?>
                 </div>
-                
                 <div class="event-container-about">
                     <h5 class="event-subtitle">
                         О событии:
@@ -61,7 +62,12 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
                 </div>
             </div>
         </div>
-
+        <div class="event-container-about">
+                    <h5 class="event-subtitle">
+                        Жанр:
+                    </h5>
+                    <p class="event-about "><?= Html::encode(Genre::getGenreById($model->genreId)) ?></p>
+                </div>
         <div class="event-container-artists">
             <h5 class="event-subtitle">Исполнители:</h5>
             <div class="event-artists-items d-flex flex-wrap align-items-center">
@@ -92,7 +98,7 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
                 Цена билетов от <?= Html::encode($model->price)?> рублей
             </div>
             <div class="event-price-btn">
-                <?= Html::button('Купить билеты', ['class' => 'btn'])?>
+            <?=(!EventUser::getIsSignedUp($model->id)) ?Html::a('Купить билеты',['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]) : Html::a('Отписаться', ['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']])?>
             </div>
         </div>
     </div>
