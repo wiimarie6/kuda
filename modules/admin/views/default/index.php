@@ -4,6 +4,7 @@ use app\models\Role;
 use app\models\User;
 use yii\bootstrap5\BootstrapAsset;
 use yii\bootstrap5\Html;
+use yii\bootstrap5\Modal;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\Url;
@@ -24,7 +25,9 @@ $this->registerCssFile('@web/css/genre.css', ['depends' => BootstrapAsset::class
 
     <h1 class="genre-title"><?=$title?></h1>
 
-    <?php Pjax::begin(); ?>
+    <?php Pjax::begin([
+        'id' => 'pjax-change',
+    ]); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
@@ -49,12 +52,13 @@ $this->registerCssFile('@web/css/genre.css', ['depends' => BootstrapAsset::class
             //'authKey',
             [
                 'content' => function (User $model) {
-                    return Html::a('Посмотреть', ['view', 'id' => $model->id], ['class' => 'btn btn-view']) .
-                        Html::a('Удалить', ['delete', 'id' => $model->id], ['class' => 'btn btn-delete-genre',]);
+                    return Html::a('Посмотреть', ['view', 'id' => $model->id], ['class' => 'btn btn-view']);
                 }
             ],
         ],
     ]); ?>
 
-    <?php Pjax::end(); ?>
+<?php Pjax::end(); ?>
 </div>
+
+

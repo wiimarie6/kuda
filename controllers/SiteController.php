@@ -426,6 +426,12 @@ class SiteController extends Controller
         ]);
     }
    
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
 
     /**
      * Finds the Event model based on its primary key value.

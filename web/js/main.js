@@ -37,6 +37,17 @@ $(()=>{
         $("#delete-modal").modal("hide");
     })
 
+    $("#main").on("click", ".btn-change-role", function(e) {
+        e.preventDefault();
+        $("#change-modal").modal("show");
+        const link = $(this).attr("href");
+        $("#change-form").attr("action", link);
+    })
+    $("#main").on("click", "#change-btn-cancel", function(e) {
+        e.preventDefault();
+        $("#change-modal").modal("hide");
+    })
+
     $("#main").on("click", ".btn-update-genre", function(e) {
         e.preventDefault();
         $("#update-modal").modal("show");

@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\Role;
 use app\models\User;
 use app\models\UserSearch;
 use Yii;
@@ -61,5 +62,19 @@ class DefaultController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionChangeRole($id)
+    {
+        $model = $this->findModel($id);
+        if ($this->request->isPost) {
+
+            $model->roleId = Role::getRoleId('Organizer');
+            if ($model->save(false)){
+                return $this->redirect(['/admin/']);
+            }
+        }
+
+        return $this->redirect(['/admin/']);
     }
 }

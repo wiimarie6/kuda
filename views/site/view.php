@@ -3,6 +3,7 @@
 use app\models\EventLikes;
 use app\models\EventUser;
 use app\models\Genre;
+use app\models\Role;
 use yii\bootstrap5\BootstrapAsset;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Modal;
@@ -52,7 +53,8 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
                     </div>
 
 
-                    <?=(!EventUser::getIsSignedUp($model->id)) ?Html::a('Купить билеты',['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]) : Html::a('Отписаться', ['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']])?>
+                    <?= Role::getRoleId('Admin') ? '' : ((!EventUser::getIsSignedUp($model->id)) ? Html::a('Купить билеты',['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]) : Html::a('Отписаться', ['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]))?>
+                    <?= (Role::getRoleId('Admin') ? Html::a('Удалить', ['delete', 'id' => $model->id], ['class' => 'btn-delete-event']) : '')  ?>
                 </div>
                 <div class="event-container-about">
                     <h5 class="event-subtitle">
@@ -98,7 +100,8 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
                 Цена билетов от <?= Html::encode($model->price)?> рублей
             </div>
             <div class="event-price-btn">
-            <?=(!EventUser::getIsSignedUp($model->id)) ?Html::a('Купить билеты',['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]) : Html::a('Отписаться', ['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']])?>
+            <?= Role::getRoleId('Admin') ? '' : ((!EventUser::getIsSignedUp($model->id)) ?Html::a('Купить билеты',['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]) : Html::a('Отписаться', ['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]))?>
+            <?= (Role::getRoleId('Admin') ? Html::a('Удалить', ['delete', 'id' => $model->id], ['class' => 'btn-delete-event']) : '')  ?>
             </div>
         </div>
     </div>
@@ -109,7 +112,7 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
 
 <?php
 Modal::begin([
-  'title' => 'Вы уверены, что хотите удалить аккаунт?',
+  'title' => 'Вы уверены, что хотите удалить мероприятие?',
   'id' => 'delete-modal',
 ]);
 ?>

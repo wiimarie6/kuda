@@ -42,6 +42,7 @@ Modal::begin([
 ?>
 <?php $form = ActiveForm::begin([
   'id' => 'account-delete-form',
+  'action' => '/account/delete'
 ]); ?>
 <div class="modal-button">
 

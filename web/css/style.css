@@ -202,6 +202,18 @@ form label {
     text-align: center;
 }
 
+/* .btn-change-role {
+    font-family: 'Handil Pro';
+    border-radius: 100px;
+    color: #1C1B1B;
+    background-color: #8C7040;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+    margin-top: 10px;
+} */
+
 #btn-cancel {
     color: #F8F2EB;
     padding: 10px;
@@ -218,12 +230,23 @@ form label {
 }
 
 #delete-btn-cancel {
+    border-radius: 120px;
     color: #F8F2EB;
     padding: 10px;
     padding-left: 30px;
     padding-right: 30px;
     font-size: 20px;
 }
+
+#change-btn-cancel {
+    border-radius: 120px;
+    color: #F8F2EB;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 20px;
+}
+
 .pagination {
     display: none;
 }

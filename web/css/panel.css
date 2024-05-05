@@ -24,6 +24,11 @@
     border: 1px solid  #8C7040;
 }
 
+.btn-panel-link:hover {
+    color: #F8F2EB;
+    border: 1px solid #F8F2EB;
+}
+
 .btn-panel-link.current {
     background: none;
     border: 1px solid #F8F2EB;

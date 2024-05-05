@@ -79,8 +79,6 @@ public function actionDelete()
 {
     $model = new \app\models\CurrentPassword();
     if ($this->request->isPost && $model->load($this->request->post())) {
-        var_dump($model->validate());
-        die;
         if ($model->deleteAccount()) {
             return $this->redirect("/site/welcome");
         }

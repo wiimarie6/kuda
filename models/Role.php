@@ -46,4 +46,9 @@ class Role extends \yii\db\ActiveRecord
     {
         return self::findOne(['title' => $title])->id;
     }
+
+    public static function getRoleById($id) 
+    {
+        return self::findOne(['id' => $id])->title;
+    }
 }
