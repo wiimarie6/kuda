@@ -37,7 +37,7 @@ $dataProvider = new ActiveDataProvider([
         <h1 class="main-title">Предстоящие</h1>
         <?= Html::a('Посмотреть все...', ['site/event-upcoming'], ['class' => 'text-underline text']) ?>
       </div>
-      <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div class="">
 
 <?php Pjax::begin(); ?>
 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -55,7 +55,7 @@ $dataProvider = new ActiveDataProvider([
         <h1 class="main-title">Новые</h1>
         <?= Html::a('Посмотреть все...', ['site/event-new'], ['class' => 'text-underline text']) ?>
       </div>
-      <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div class="">
       <?php Pjax::begin(); ?>
 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -72,7 +72,7 @@ $dataProvider = new ActiveDataProvider([
         <h1 class="main-title">Все мероприятия</h1>
         <?= Html::a('Посмотреть все...', ['site/event-all'], ['class' => 'text-underline text']) ?>
       </div>
-      <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div class="">
       <?php Pjax::begin(); ?>
 <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

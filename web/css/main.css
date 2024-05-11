@@ -2,33 +2,37 @@ body {
     background: url('./images/maain-bg.png') no-repeat ;
     background-attachment: scroll;
 }
+
+.nav-link{
+    font-size: clamp(12px, 1.25vw, 16px);
+}
 a.text {
-    font-size: 20px;
+    font-size: clamp(12px, 2vw, 20px);
     color: #8C7040;
 }
 
 a.text:link {
-    font-size: 20px;
+    font-size: clamp(12px, 2vw, 20px);
     color: #8C7040;
 }
 
 a.text:visited {
-    font-size: 20px;
+    font-size: clamp(12px, 2vw, 20px);
     color: #8C7040;
 }
 
 a.text:focus {
-    font-size: 20px;
+    font-size: clamp(12px, 2vw, 20px);
     color: #F8F2EB;
 }
 
 a.text:hover {
-    font-size: 20px;
+    font-size: clamp(12px, 2vw, 20px);
     color: #F8F2EB;
 }
 
 a.text:active {
-    font-size: 20px;
+    font-size: clamp(12px, 2vw, 20px);
     color: #F8F2EB;
 }
 
@@ -37,12 +41,13 @@ a.text:active {
     display: flex;
     flex-direction: row;
     align-items: end;
-    margin-bottom: 30px;
+    margin-bottom: clamp(15px, 2vw, 30px);
+    margin-top: clamp(15px, 2vw, 30px);
     justify-content: space-between;
 }
 
 .main-title {
     color: #F8F2EB;
-    font-size: 30px;
+    font-size: var(--size-title);
     margin: 0;
 }

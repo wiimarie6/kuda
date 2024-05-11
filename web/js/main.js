@@ -1,6 +1,6 @@
 $(()=>{
 
-
+    $('.alert').delay(5000).fadeOut(1000)
 
 
     const url = location.pathname;

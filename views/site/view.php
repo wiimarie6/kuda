@@ -27,6 +27,7 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
             <div class="event-container-image d-flex flex-column">
                 <?= Html::img('@web/uploads/' . $model->image, ['class' => 'event-image']) ?>
 
+                <?php if (Yii::$app->user->identity->isUser):?>
                 <div class="event-container-like d-flex align-items-center">
                     <a href="/site/like?id=<?=$model->id?>" class="text-decoration-none d-flex align-items-center">
 
@@ -41,6 +42,7 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
                         <span class="event-like-text"> Хочу сходить</span>
                     </a>
                 </div>
+                <?php endif;?>
             </div>
 
             <div class="event-container-info d-flex flex-column">
@@ -53,8 +55,8 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
                     </div>
 
 
-                    <?= Role::getRoleId('Admin') ? '' : ((!EventUser::getIsSignedUp($model->id)) ? Html::a('Купить билеты',['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]) : Html::a('Отписаться', ['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]))?>
-                    <?= (Role::getRoleId('Admin') ? Html::a('Удалить', ['delete', 'id' => $model->id], ['class' => 'btn-delete-event']) : '')  ?>
+                    <?= (!Yii::$app->user->identity->isUser) ? '' : ((!EventUser::getIsSignedUp($model->id)) ? Html::a('Записаться',['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]) : Html::a('Отписаться', ['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]))?>
+                    <?= ((Yii::$app->user->identity->isAdmin || $model->userId == Yii::$app->user->identity->id) ? Html::a('Удалить', ['delete', 'id' => $model->id], ['class' => 'btn-delete-event']) : '')  ?>
                 </div>
                 <div class="event-container-about">
                     <h5 class="event-subtitle">
@@ -99,9 +101,9 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
             <div class="event-price">
                 Цена билетов от <?= Html::encode($model->price)?> рублей
             </div>
-            <div class="event-price-btn">
-            <?= Role::getRoleId('Admin') ? '' : ((!EventUser::getIsSignedUp($model->id)) ?Html::a('Купить билеты',['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]) : Html::a('Отписаться', ['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]))?>
-            <?= (Role::getRoleId('Admin') ? Html::a('Удалить', ['delete', 'id' => $model->id], ['class' => 'btn-delete-event']) : '')  ?>
+            <div class="event-price-btn d-flex">
+            <?= (!Yii::$app->user->identity->isUser)? '' : ((!EventUser::getIsSignedUp($model->id)) ?Html::a('Записаться',['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]) : Html::a('Отписаться', ['', 'id' => $model->id], ['class' => 'btn', 'data' => ['method' => 'post']]))?>
+            <?= ((Yii::$app->user->identity->isAdmin || $model->userId == Yii::$app->user->identity->id) ? Html::a('Удалить', ['delete', 'id' => $model->id], ['class' => 'btn-delete-event']) : '')  ?>
             </div>
         </div>
     </div>

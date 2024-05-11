@@ -13,26 +13,26 @@ body {
 .genre-title {
     color: #F8F2EB;
     margin-bottom: 30px;
-    font-size: 50px;
+    font-size: var(--size-title);
 }
 
 .btn-create-genre {
     border-radius: 120px;
     background: #8C7040;
-    font-size:  24px;
+    font-size:  var(--size-text);
     font-weight: 500;
     color: #1C1B1B;
-    padding: 15px 80px;
+    padding: 15px clamp( 20px, 5vw, 80px);
     border: 1px solid  #8C7040;
 }
 
 .btn-create-genre:hover {
     border-radius: 120px;
     background: none;
-    font-size:  24px;
+    font-size:  var(--size-text);
     font-weight: 500;
     color: #F8F2EB;
-    padding: 15px 80px;
+    padding: 15px clamp( 20px, 5vw, 80px);
     border: 1px solid  #F8F2EB;
 }
 
@@ -48,7 +48,7 @@ thead, tbody, tfoot, tr, td, th {
 }
 
 table {
-    font-size: 24px;
+    font-size: var(--size-text);
 }
 
 a {
@@ -69,16 +69,16 @@ a {
     color: #1C1B1B;
     background-color: #8C7040;
     padding: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: clamp(20px, 3vw, 30px);
+    padding-right: clamp(20px, 3vw, 30px);
     text-align: center;
 }
 
 .btn-delete-genre {
     color: #F8F2EB;
     padding: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: clamp(20px, 3vw, 30px);
+    padding-right: clamp(20px, 3vw, 30px);
 }
 
 .btn-back-genre {

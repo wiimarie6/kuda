@@ -90,6 +90,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->roleId == Role::getRoleId('Organizer');
     }
 
+    public function getIsUser() 
+    {
+        return $this->roleId == Role::getRoleId('User');
+    }
+
     public static function findByEmail($email) 
     {
         return self::findOne(['email' => $email]);

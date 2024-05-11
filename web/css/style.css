@@ -3,12 +3,37 @@
     src: url(fonts/HandilPro-Medium.otf);
 }
 
+
+:root{
+    --size-text: clamp(14px, 1.25vw ,24px);
+    --size-title: clamp(24px, 2.5vw ,30px);
+}
 * {
     font-family: 'Handil Pro';
 
 }
 body {
     background-color: #1C1B1B;
+    height: auto !important;
+}
+
+h1, h2,h3, h4{
+    font-size: var(--size-title);
+    margin: 0;
+    padding: 0;
+}
+
+::-webkit-scrollbar{
+    width: 2px;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #8C7040 !important;
+    border-radius: 2px;
+}
+::-webkit-scrollbar-track{
+    background: transparent;
+    border-radius: 2px;
 }
 
 .container-block{
@@ -16,8 +41,12 @@ body {
     margin: 0 auto;
 }
 
+.container-center-block{
+    width: clamp(330px, 90%, 850px);
+}
+
 .admin-default-index {
-    margin: 100px auto;
+    margin: clamp( 40px, 10vw, 100px) auto;
 }
 .account-link:any-link{
     color: #8C7040;
@@ -25,16 +54,16 @@ body {
 }
 .title {
     color: #F8F2EB;
-    font-size: 40px;
+    font-size: var(--size-title);
     line-height: 1.10;
 }
 
 .form-control {
     background-color: #1C1B1B;
     border: 1px solid #8C7040;
-    font-size: 20px;
+    font-size: var(--size-text);
     text-align: center;
-    padding: 14px 0;
+    padding: 14px 10px;
     color: #F8F2EB;
     border-radius: 120px;
 }
@@ -51,7 +80,7 @@ body {
 
 }
 .form-group {
-    margin: 30px 0 15px;
+    margin: 4px clamp(10px , 1.5vw, 15px);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -61,9 +90,9 @@ body {
 .form-group .btn {
     border-radius: 120px;
     background: #8C7040;
-    font-size:  20px;
+    font-size:  var(--size-text);
     color: #1C1B1B;
-    padding: 15px 80px;
+    padding: clamp(10px,1.5vw, 15px) clamp(30px, 8vw, 80px);
     border: 1px solid  #8C7040;
 }
 
@@ -76,7 +105,7 @@ body {
 }
 
 form label {
-    font-size: 25px;
+    font-size: var(--size-text);
 }
 /* nav {
     padding: 30px 0 !important;
@@ -87,6 +116,7 @@ form label {
 .nav-link{
     padding: 0 var(--bs-nav-link-padding-x);
     color: #8C7040;
+    font-size: clamp(14px, 1.2vw, 20px);
 }
 .nav-link.active:any-link {
     color: #8C7040;
@@ -97,11 +127,33 @@ form label {
 }
 .navbar-brand {
     color: #8C7040;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .navbar-collapse {
     justify-content: end;
+}
+
+
+
+@media (max-width: 992px) {
+    .navbar-collapse {
+        background-color: #1C1B1B;
+        border: 1px #8C7040 solid;
+        border-radius: 80px;
+    }
+    .navbar-nav {
+        gap: 10px;
+    }
+
+    .nav-item {
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+
+
 }
 
 .invalid-feedback {
@@ -140,13 +192,22 @@ form label {
 
 /* modal delete */
 
+.modal-dialog {
+    left: 50%;
+    margin: 0;
+    top: 50%;
+    transform: translate(-50%, -50%) !important;
+    position: absolute;
+    max-width: clamp( 330px, 60vw ,900px) !important;
+}
+
 .modal-content {
     background-color: #1C1B1B;
     border: 1px #8C7040 solid;
-    border-radius: 126px;
+    border-radius: 80px;
     color: #F8F2EB;
     padding-top: 10px;
-    width: 150%;
+    width: clamp( 330px, 60vw ,900px);
 
 }
 
@@ -157,7 +218,7 @@ form label {
 }
 
 .modal-button {
-    padding: 30px;
+    padding: clamp(10px, 3vw, 30px);
 }
 
 .modal-header {
@@ -166,13 +227,13 @@ form label {
     text-align: center;
     justify-content: center;
     align-items: center;
-    padding-top: 50px;
+    padding-top: clamp( 20px, 3vw,50px);
     padding-left: 10px;
     padding-right: 10px;
 
 }
 .modal-title {
-    font-size: 30px;
+    font-size: var(--size-title);
     padding: 10px;
 }
 
@@ -186,8 +247,8 @@ form label {
     color: #1C1B1B;
     background-color: #8C7040;
     padding: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: clamp(20px, 3vw, 30px);
+    padding-right: clamp(20px, 3vw, 30px);
     text-align: center;
 }
 
@@ -197,8 +258,8 @@ form label {
     color: #1C1B1B;
     background-color: #8C7040;
     padding: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: clamp(20px, 3vw, 30px);
+    padding-right: clamp(20px, 3vw, 30px);
     text-align: center;
 }
 
@@ -217,34 +278,34 @@ form label {
 #btn-cancel {
     color: #F8F2EB;
     padding: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: clamp(20px, 3vw, 30px);
+    padding-right: clamp(20px, 3vw, 30px);
 }
 
 #btn-cancel-title {
     color: #F8F2EB;
     padding: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
-    font-size: 20px;
+    padding-left: clamp(20px, 3vw, 30px);
+    padding-right: clamp(20px, 3vw, 30px);
+    font-size: var(--size-text)
 }
 
 #delete-btn-cancel {
     border-radius: 120px;
     color: #F8F2EB;
     padding: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
-    font-size: 20px;
+    padding-left: clamp(20px, 3vw, 30px);
+    padding-right: clamp(20px, 3vw, 30px);
+    font-size: var(--size-text)
 }
 
 #change-btn-cancel {
     border-radius: 120px;
     color: #F8F2EB;
     padding: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
-    font-size: 20px;
+    padding-left: clamp(20px, 3vw, 30px);
+    padding-right: clamp(20px, 3vw, 30px);
+    font-size: var(--size-text)
 }
 
 .pagination {
@@ -254,9 +315,13 @@ form label {
 .btn-cancel-genre {
     color: #F8F2EB;
     padding: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
-    font-size: 20px;
+    padding-left: clamp(20px, 3vw, 30px);
+    padding-right: clamp(20px, 3vw, 30px);
+    font-size: var(--size-text)
+}
+
+.empty {
+    color: #8C7040;
 }
 
 

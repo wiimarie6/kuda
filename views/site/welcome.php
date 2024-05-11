@@ -10,14 +10,14 @@ $this->registerCssFile('@web/css/welcome.css', ['depends' => BootstrapAsset::cla
 <section class="vh-100 gradient-custom">
   <div class="py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-8">
+      <div class="container-center-block">
         <div class="card text-white welcome-container">
-          <div class="card-body p-5 text-center">
+          <div class="card-body p-4 text-center">
 
             <div class="mb-md-3 mt-md-2">
 
               <h2 class="fw-bold mb-2 title-welcome">¿kuda?</h2>
-              <p class="mb-5 title">Здесь вы сможете найти то мероприятие, которое Вам точно понравится </br> Давайте начнём?</p>
+              <p class="mb-4 title">Здесь вы сможете найти то мероприятие, которое Вам точно понравится </br> Давайте начнём?</p>
 
              
             <?= Html::a('Регистрация', ['sign-up'], ['class' => 'btn btn-welcome']) ?>

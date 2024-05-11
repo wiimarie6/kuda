@@ -19,6 +19,7 @@ use app\models\GenreUser;
 use app\models\User;
 use yii\bootstrap5\ActiveForm;
 use yii\data\ActiveDataProvider;
+use yii\web\NotFoundHttpException;
 
 class SiteController extends Controller
 {
@@ -60,11 +61,16 @@ class SiteController extends Controller
     {
         if (Yii::$app->user->isGuest){
             return $this->redirect('/site/welcome');
-        } elseif (!GenreUser::getGenresByUser()){
+        } elseif ( Yii::$app->user->identity->isUser && !GenreUser::getGenresByUser()){
             return $this->redirect('/site/genres');
         }
         $userGenres = GenreUser::find()->select('genreId')->where(['userId'=> Yii::$app->user->id])->asArray()->column();
-        $query = Event::find()->where(['genreId' => $userGenres]);
+        if (Yii::$app->user->identity->isUser) {
+            
+            $query = Event::find()->where(['genreId' => $userGenres]);
+        } else {
+            $query = Event::find();
+        }
 
         $eventsSoon = new ActiveDataProvider([
             'query' => $query,
@@ -213,8 +219,8 @@ class SiteController extends Controller
 
                     $user->emailLink = Yii::$app->security->generateRandomString();
                     $user->save(false);
+                    Yii::$app->mailer->compose('changePassword', ['userEmail' => $model->email, 'link' => $user->emailLink ?? Yii::$app->security->generateRandomString()])->setFrom(env('YANDEX_LOGIN'))->setTo($model->email)->setSubject('kuda Смена пароля')->send();
                 }
-                Yii::$app->mailer->compose('changePassword', ['userEmail' => $model->email, 'link' => $user->emailLink ?? Yii::$app->security->generateRandomString()])->setFrom(env('YANDEX_LOGIN'))->setTo($model->email)->setSubject('kuda Смена пароля')->send();
                 Yii::$app->session->setFlash('info', 'Сообщение отправлено на указанную почту');
                 return $this->refresh();
             }
@@ -256,7 +262,7 @@ class SiteController extends Controller
     {
         if (Yii::$app->user->isGuest){
             return $this->redirect('/site/welcome');
-        } elseif (!GenreUser::getGenresByUser()){
+        } elseif (Yii::$app->user->identity->isUser && !GenreUser::getGenresByUser()){
             return $this->redirect('/site/genres');
         }
         $dataProvider = new ActiveDataProvider([
@@ -276,7 +282,7 @@ class SiteController extends Controller
     {
         if (Yii::$app->user->isGuest){
             return $this->redirect('/site/welcome');
-        } elseif (!GenreUser::getGenresByUser()){
+        } elseif (Yii::$app->user->identity->isUser && !GenreUser::getGenresByUser()){
             return $this->redirect('/site/genres');
         }
         $dataProvider = new ActiveDataProvider([
@@ -296,7 +302,7 @@ class SiteController extends Controller
     {
         if (Yii::$app->user->isGuest){
             return $this->redirect('/site/welcome');
-        } elseif (!GenreUser::getGenresByUser()){
+        } elseif (Yii::$app->user->identity->isUser && !GenreUser::getGenresByUser()){
             return $this->redirect('/site/genres');
         }
         return $this->render('eventAll', []);
@@ -306,11 +312,16 @@ class SiteController extends Controller
     {
         if (Yii::$app->user->isGuest){
             return $this->redirect('/site/welcome');
-        } elseif (!GenreUser::getGenresByUser()){
+        } elseif (Yii::$app->user->identity->isUser && !GenreUser::getGenresByUser()){
             return $this->redirect('/site/genres');
         }
         $userGenres = GenreUser::find()->select('genreId')->where(['userId'=> Yii::$app->user->id])->asArray()->column();
-        $query = Event::find()->where(['genreId' => $userGenres]);
+        if (Yii::$app->user->identity->isUser) {
+            
+            $query = Event::find()->where(['genreId' => $userGenres]);
+        } else {
+            $query = Event::find();
+        }
         $eventsSoon = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
@@ -328,12 +339,16 @@ class SiteController extends Controller
     {
         if (Yii::$app->user->isGuest){
             return $this->redirect('/site/welcome');
-        } elseif (!GenreUser::getGenresByUser()){
+        } elseif (Yii::$app->user->identity->isUser && !GenreUser::getGenresByUser()){
             return $this->redirect('/site/genres');
         }
         $userGenres = GenreUser::find()->select('genreId')->where(['userId'=> Yii::$app->user->id])->asArray()->column();
-        $query = Event::find()->where(['genreId' => $userGenres]);
-
+        if (Yii::$app->user->identity->isUser) {
+            
+            $query = Event::find()->where(['genreId' => $userGenres]);
+        } else {
+            $query = Event::find();
+        }
         $eventsNew = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
@@ -351,7 +366,7 @@ class SiteController extends Controller
     {
         if (Yii::$app->user->isGuest){
             return $this->redirect('/site/welcome');
-        } elseif (!GenreUser::getGenresByUser()){
+        } elseif (Yii::$app->user->identity->isUser && !GenreUser::getGenresByUser()){
             return $this->redirect('/site/genres');
         }
         $model = $this->findModel($id);
@@ -379,7 +394,7 @@ class SiteController extends Controller
     {
         if (Yii::$app->user->isGuest){
             return $this->redirect('/site/welcome');
-        } elseif (!GenreUser::getGenresByUser()){
+        } elseif (Yii::$app->user->identity->isUser && !GenreUser::getGenresByUser()){
             return $this->redirect('/site/genres');
         }
         $model = $this->findModel($id);
@@ -399,7 +414,8 @@ class SiteController extends Controller
     $this->layout = 'withoutHeader';
     if (Yii::$app->user->isGuest){
         return $this->redirect('/site/welcome');
-    }
+    } elseif (!Yii::$app->user->identity->isUser || GenreUser::getGenresByUser())
+        $this->redirect('/site/');
         $model = new GenreUser();
         $genres = Genre::getGenres();
         $genreSelectArray = GenreUser::find()->select('genreId')->where(['userId'=> Yii::$app->user->id])->asArray()->column();
@@ -445,5 +461,7 @@ class SiteController extends Controller
         if (($model = Event::findOne(['id' => $id])) !== null) {
             return $model;
         }
+        throw new NotFoundHttpException('The requested page does not exist.');
+
     }
 }

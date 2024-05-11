@@ -9,9 +9,9 @@ $this->registerCssFile('@web/css/account.css', ['depends' => BootstrapAsset::cla
 <section class="vh-100 gradient-custom">
   <div class="py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-8">
+      <div class="container-center-block">
         <div class="card text-white account-container">
-          <div class="card-body p-5 text-center">
+          <div class="card-body p-4 text-center">
 
             <div class="mb-md-4 mt-md-4">
               <p class="mb-3 title-account">Смена пароля</p>

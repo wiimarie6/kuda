@@ -28,6 +28,7 @@ class LoginForm extends Model
         return [
             // username and password are both required
             [['email', 'password'], 'required'],
+            ['email', 'email'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];

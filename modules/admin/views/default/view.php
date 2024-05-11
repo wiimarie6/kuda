@@ -71,7 +71,7 @@ Modal::begin([
   </div>
 </div>
 <?php ActiveForm::end(); ?>
-
+  
 <?
 Modal::end();
 ?>

@@ -1,23 +1,23 @@
 .title-welcome {
     color: #8C7040;
-    font-size: 30px;
+    font-size: var(--size-title);
     font-family: 'Handil Pro';
     padding: 20px;
 }
 .btn-welcome {
-    font-size: 30px;
+    font-size: var(--size-text);
     font-family: 'Handil Pro';
     border-radius: 100px;
     color: #1C1B1B;
     background-color: #8C7040;
     padding: 10px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: clamp( 20px, 5vw, 50px);
+    padding-right:clamp( 20px, 5vw, 50px);
     text-align: center;
 }
 
 .text-in {
-    font-size: 15px;
+    font-size: var(--size-text);
     font-family: 'Handil Pro';
     color: #8C7040;
     padding-top: 15px;
@@ -28,22 +28,12 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-gap: 20px;
     overflow: auto;
-    height: 310px;
-    scrollbar-width: 2px;
+    max-height: 310px;
 }
 
-#genreuser-selectedgenres::-webkit-scrollbar{
-    width: 2px;
-}
 
-#genreuser-selectedgenres::-webkit-scrollbar-thumb{
-    background: #8C7040 !important;
-    border-radius: 2px;
-}
-#genreuser-selectedgenres::-webkit-scrollbar-track{
-    background: transparent;
-    border-radius: 2px;
-}
+
+
 .container-genres{
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -51,7 +41,11 @@
     margin-bottom: 1rem;
 }
 
-
+@media (max-width: 768px) {
+    #genreuser-selectedgenres {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
 
 .genre-checkbox {
     display: flex;
@@ -82,8 +76,8 @@
 }
 
 #genre-select-all {
-    width: 225px;
-    font-size: 25px;
+    width: clamp( 150px, 50% ,225px);
+    font-size: var(--size-text);
     margin-bottom: 20px;
     cursor: pointer;
 }

@@ -19,9 +19,9 @@ $this->registerCssFile('@web/css/welcome.css', ['depends' => BootstrapAsset::cla
 <section class="vh-100 gradient-custom">
   <div class="py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-8">
+      <div class="container-center-block">
         <div class="card text-white welcome-container">
-          <div class="card-body p-5 text-center">
+          <div class="card-body p-4 text-center">
             <div class="mb-md-5 mt-md-4">
             <div class="site-login">
                 <h1 class="signIn-title"><?= Html::encode($this->title) ?></h1>

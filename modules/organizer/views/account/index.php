@@ -11,9 +11,9 @@ $this->registerCssFile('@web/css/account.css', ['depends' => BootstrapAsset::cla
 <section class="vh-100 gradient-custom">
   <div class="py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-8">
+      <div class="container-center-block">
         <div class="card text-white account-container">
-          <div class="card-body p-5 text-center">
+          <div class="card-body p-4">
 
             <div class="mb-md-4 mt-md-4">
               <p class="mb-3 title-account">Личный кабинет организатора</p>
@@ -21,7 +21,7 @@ $this->registerCssFile('@web/css/account.css', ['depends' => BootstrapAsset::cla
                 <?php Pjax::begin(['id' => 'pjax-account']); ?>
                 <p class="text">Наименование организатора: <span class="account-text"><?= Yii::$app->user->identity?->name ?></span></p>
                 <p class="text">Email: <span class="account-text"><?= Yii::$app->user->identity?->email ?></span></p>
-                <p class="text"><?= Html::a('Мероприятия, которые Вы опубликовали:', ['/organizer/'], ['class' => 'text-underline text']) ?> <span class="account-text"><?= $eventsOrg ?> мероприятия</span></p>
+                <p class="text"><?= Html::a('Мероприятия, которые Вы опубликовали:', ['/organizer/'], ['class' => 'text-underline text']) ?> <span class="account-text"><?= $eventsOrg ?> мероприятия(ий)</span></p>
                 <p class="text"><?= Html::a('Сменить пароль', ['new-password'], ['class' => 'text-underline text']) ?></p>
                 <p class="text"><?= Html::a('Удалить аккаунт', ['delete'], ['class' => 'text-underline text btn-delete']) ?></p>
                 <?php Pjax::end(); ?>
@@ -42,7 +42,7 @@ Modal::begin([
 ]);
 ?>
 <div class="modal-button">
-  <?= Html::a('Отмена', '', ['class' => 'btn text text-underline', 'id' => 'delete-btn-cancel']) ?>
+  <?= Html::a('Отмена', '', ['class' => 'text text-underline', 'id' => 'delete-btn-cancel']) ?>
   <?= Html::a('Удалить', ['delete'], ['class' => 'btn delete-btn', 'id' => 'delete-btn-confirm', 'data' => [
     'method' => 'post',
   ]]) ?>

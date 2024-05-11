@@ -11,15 +11,15 @@ $this->registerCssFile('@web/css/welcome.css', ['depends' => BootstrapAsset::cla
 
 ?>
 
-<section class="vh-100 gradient-custom">
+<section class="min-vh-100 gradient-custom">
   <div class="py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-8">
+      <div class="container-center-block">
         <div class="card text-white welcome-container">
           <div class="card-body p-4 text-center">
 
             <div class="mb-md-3 mt-md-3">
-              <p class="mb-3 title">Регистрация</p>
+              <p class="mb-2 title">Регистрация</p>
 
                  <?php $form = ActiveForm::begin([
         'id' => 'registr-form',

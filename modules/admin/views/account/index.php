@@ -11,7 +11,7 @@ $this->registerCssFile('@web/css/account.css', ['depends' => BootstrapAsset::cla
 <section class="vh-100 gradient-custom">
   <div class="py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-8">
+      <div class="container-center-block">
         <div class="card text-white account-container">
           <div class="card-body p-4 text-center">
 
@@ -49,7 +49,7 @@ Modal::begin([
 <?= $form->field($model, 'currentPassword')->passwordInput() ?>
 
   <div class="form-group">
-    <?= Html::a('Отмена', '', ['class' => 'btn text text-underline', 'id' => 'delete-btn-cancel']) ?>
+    <?= Html::a('Отмена', '', ['class' => ' text text-underline', 'id' => 'delete-btn-cancel']) ?>
     <?= Html::submitButton('Удалить', ['class' => 'btn btn-primary']) ?>
   </div>
 </div>

@@ -7,12 +7,12 @@ main {
     justify-content: center;
 }
 .account-container {
-    border-radius: 100px;
+    border-radius: 80px;
     box-shadow: 0px 0px 61px 3px black;
     background-color: #1C1B1B;
 }
 .text {
-    font-size: 20px;
+    font-size: var(--size-text);
     font-family: 'Handil Pro';
     color: #8C7040;
 }
@@ -30,30 +30,39 @@ main {
     align-items: flex-start;
     justify-content: flex-start;
     padding: 10px;
+    text-align: start;
 }
 
 .account-text {
     color: #F8F2EB;
-    font-size: 24px;
+    font-size: var(--size-text);
 }
 
 .title-account {
     color: #F8F2EB;
-    font-size: 34px;
+    font-size: var(--size-title);
+    text-align: center;
     line-height: 1.10;
+    margin-top: 10px;
+    margin-bottom: 5px !important;
 }
 
 #genreuser-selectedgenres{
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-gap: 20px;
+    max-height: 310px;
+    overflow: auto;
 }
 
 .container-genres{
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-gap: 20px;
+    max-height: 310px;
+    overflow: auto;
     margin-bottom: 1rem;
+
 }
 
 
@@ -87,8 +96,8 @@ main {
 }
 
 #genre-select-all {
-    width: 225px;
-    font-size: 25px;
+    width: clamp( 150px, 50% ,225px);
+    font-size: var(--size-text);
     margin-bottom: 20px;
     cursor: pointer;
 }
@@ -112,3 +121,27 @@ main {
     height: 140px;
     border-radius: 40px;
   }
+
+  @media (max-width: 768px) {
+    #genreuser-selectedgenres {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .container-genres{
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .container-genres{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+}
+
+@media (max-width: 450px) {
+    .container-genres{
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    
+}

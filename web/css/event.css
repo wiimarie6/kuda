@@ -14,17 +14,25 @@ body {
 .event-title {
     color: #F8F2EB;
     margin-bottom: 30px;
-    font-size: 30px;
+    font-size: var(--size-title);
 }
 .event-cards {
-    gap: 50px 70px;
+    gap: clamp(20px, 5vw, 50px) clamp(30px, 7vw, 70px);
+    overflow: auto;
+    padding-bottom: 2px;
 }
 .row {
-    margin-bottom: 100px;
+    margin-bottom: clamp(60px, 5.5vw, 100px);
 }
 .event-form {
     color: #F8F2EB;
     width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    .event-form {
+        width: 100%;
+    }
 }
 
 .event-view {
@@ -39,20 +47,20 @@ body {
 .event-container .btn {
     border-radius: 120px;
     background: #8C7040;
-    font-size:  24px;
+    font-size:  var(--size-text);
     font-weight: 500;
     color: #1C1B1B;
-    padding: 15px 80px;
+    padding: 15px clamp( 10px, 3vw, 80px);
     border: 1px solid  #8C7040;
 }
 
 .btn-create {
     border-radius: 120px;
     background: #8C7040;
-    font-size:  24px;
+    font-size:  var(--size-text);
     font-weight: 500;
     color: #1C1B1B;
-    padding: 15px 80px;
+    padding: 15px clamp( 10px, 3vw, 80px);
     border: 1px solid  #8C7040;
 }
 
@@ -61,7 +69,7 @@ input::file-selector-button {
     color: #F8F2EB !important;
     border: none;
     border-radius: 120px;
-    padding-left: 40px !important;
+    padding-left: clamp( 10px, 2.5vw, 40px) !important;
 }
 
 tabel::multiple-input-list {
@@ -74,7 +82,7 @@ tabel::multiple-input-list {
 }
 
 .list-cell__artists {
-    font-size: 25px;
+    font-size: var(--size-text);
     color: #F8F2EB !important;
     font-weight: 300;
 }
@@ -100,7 +108,7 @@ datetime-local {
 select {
     background-color: #1C1B1B !important;
     border: 1px solid #8C7040 !important;
-    font-size: 20px !important;
+    font-size: var(--size-text) !important;
     text-align: center;
     padding: 14px 0 !important;
     color: #F8F2EB !important;
@@ -118,17 +126,17 @@ option {
 }
 
 .event-container {
-    gap: 40px;
+    gap: clamp(20px, 2.5vw, 40px);
 }
 
 .event-subtitle{
-    font-size: 30px;
+    font-size: var(--size-title);
     margin-bottom: 15px;
     color: #8C7040;
 }
 
 .event-container-main {
-    gap: 70px;
+    gap: clamp(30px , 4vw, 60px);
 }
 
 .event-container-image{
@@ -154,27 +162,27 @@ option {
 }
 
 .event-like-text {
-    font-size: 24px;
+    font-size: var(--size-text);
     color: #8C7040;
 }
 
 .event-container-info {
     gap: clamp(20px, 3vw, 40px);
+    flex: 1 1 auto;
 }
 
 .event-title-view {
-    font-size: 50px;
+    font-size: var(--size-title);
 }
 
 .event-container-date-buy {
     gap: clamp(20px, 5vw, 50px);
 }
 .event-date-text{
-    font-size: 35px;
+    font-size: clamp(16px, 2vw, 36px);
 }
 .event-about {
-    font-size: 35px;
-    width: 700px;
+    font-size: clamp(16px, 2vw, 36px);
 }
 
 
@@ -187,7 +195,7 @@ option {
 }*/
 
 .event-artists-title {
-    font-size: 35px;
+    font-size: clamp(16px, 2vw, 36px);
 }
 
 
@@ -202,7 +210,7 @@ option {
 }
 
 .event-place-text{
-    font-size: 35px;
+    font-size: clamp(16px, 2vw, 36px);
 }
 
 .event-container-price {
@@ -211,15 +219,15 @@ option {
 }
 
 .event-price {
-    font-size: 35px;
+    font-size: clamp(16px, 2vw, 36px);
 }
 
 .btn-delete-event {
     border-radius: 120px;
     background: #8C7040;
-    font-size:  24px;
+    font-size:  var(--size-text);
     font-weight: 500;
     color: #1C1B1B;
-    padding: 15px 80px;
+    padding: 15px clamp( 20px, 5vw, 80px);
     border: 1px solid  #8C7040;
 }

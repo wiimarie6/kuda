@@ -27,7 +27,7 @@ $this->registerCssFile('@web/css/withoutHeader.css', ['depends' => yii\bootstrap
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column">
 <?php $this->beginBody() ?>
 
 
