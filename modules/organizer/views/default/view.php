@@ -82,9 +82,6 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
             <div class="event-price">
                 Цена билетов от <?= Html::encode($model->price)?> рублей
             </div>
-            <div class="event-price-btn">
-                <?= Html::button('Купить билеты', ['class' => 'btn'])?>
-            </div>
         </div>
     </div>
                 <?php Pjax::end(); ?>

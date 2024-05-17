@@ -7,6 +7,21 @@
     padding-right: clamp(20px, 3vw, 30px);
     text-align: center;
 }
+
+
+.btn-view:hover {
+    color: #F8F2EB;
+    background: inherit;
+    border: 1px solid #8C7040;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
+}
+
+.btn-view:focus {
+    color: #F8F2EB;
+    background: inherit;
+    border: 1px solid #8C7040;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
+}
 .panel-links {
     display: flex;
     gap: clamp(20px, 3vw, 40px);
@@ -25,14 +40,17 @@
 }
 
 .btn-panel-link:hover {
-    color: #F8F2EB;
-    border: 1px solid #F8F2EB;
+    color: #8C7040;
+    background: inherit;
+    border: 1px solid #8C7040;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
 }
 
 .btn-panel-link.current {
-    background: none;
-    border: 1px solid #F8F2EB;
-    color: #F8F2EB;
+    color: #8C7040;
+    background: inherit;
+    border: 1px solid #8C7040;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
 }
 
 .grid-view {

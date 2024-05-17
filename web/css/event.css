@@ -4,6 +4,8 @@ section {
 }
 body {
     background: url('./images/maain-bg.png') no-repeat center fixed  ;
+    background-size: cover;
+
 }
 .event-section {
     display: flex;
@@ -54,6 +56,19 @@ body {
     border: 1px solid  #8C7040;
 }
 
+.event-container .btn:hover {
+    color: #F8F2EB;
+    background: inherit;
+    border: 1px solid #8C7040;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
+}
+.event-container .btn:focus {
+    color: #F8F2EB;
+    background: inherit;
+    border: 1px solid #8C7040;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
+}
+
 .btn-create {
     border-radius: 120px;
     background: #8C7040;
@@ -62,6 +77,20 @@ body {
     color: #1C1B1B;
     padding: 15px clamp( 10px, 3vw, 80px);
     border: 1px solid  #8C7040;
+}
+
+.btn-create:hover {
+    color: #F8F2EB;
+    background: inherit;
+    border: 1px solid #8C7040;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
+}
+
+.btn-create:focus {
+    color: #F8F2EB;
+    background: inherit;
+    border: 1px solid #8C7040;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
 }
 
 input::file-selector-button {
@@ -207,6 +236,7 @@ option {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-bottom: 15px;
 }
 
 .event-place-text{
@@ -230,4 +260,19 @@ option {
     color: #1C1B1B;
     padding: 15px clamp( 20px, 5vw, 80px);
     border: 1px solid  #8C7040;
+    text-decoration: none;
+}
+
+.btn-delete-event:hover {
+    color: #F8F2EB;
+    background: inherit;
+    border: 1px solid #8C7040;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
+}
+
+.btn-delete-event:focus {
+    color: #F8F2EB;
+    background: inherit;
+    border: 1px solid #8C7040;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
 }

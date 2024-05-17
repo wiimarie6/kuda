@@ -37,17 +37,24 @@ $this->registerCssFile('@web/css/account.css', ['depends' => BootstrapAsset::cla
 
 <?php
 Modal::begin([
-  'title' => 'Вы уверены, что хотите удалить аккаунт?',
+  'title' => 'Для удаления аккаунта введите пароль',
   'id' => 'delete-modal'
 ]);
 ?>
+<?php $form = ActiveForm::begin([
+  'id' => 'account-delete-form',
+  'action' => '/account/delete'
+]); ?>
 <div class="modal-button">
-  <?= Html::a('Отмена', '', ['class' => 'text text-underline', 'id' => 'delete-btn-cancel']) ?>
-  <?= Html::a('Удалить', ['delete'], ['class' => 'btn delete-btn', 'id' => 'delete-btn-confirm', 'data' => [
-    'method' => 'post',
-  ]]) ?>
-</div>
 
+<?= $form->field($model, 'currentPassword', ['enableAjaxValidation' => true])->passwordInput() ?>
+
+  <div class="form-group">
+    <?= Html::a('Отмена', '', ['class' => ' text text-underline', 'id' => 'delete-btn-cancel']) ?>
+    <?= Html::submitButton('Удалить', ['class' => 'btn btn-primary']) ?>
+  </div>
+</div>
+<?php ActiveForm::end(); ?>
 <?
 Modal::end();
 ?>

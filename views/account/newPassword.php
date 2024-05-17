@@ -26,6 +26,9 @@ $this->registerCssFile('@web/css/account.css', ['depends' => BootstrapAsset::cla
         <div class="form-group">
             <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
         </div>
+        <div>
+            <?= Html::a('Назад', ['/account/'], ['class' => 'text-underline text']) ?>
+        </div>
     <?php ActiveForm::end(); ?>
 
 </div>

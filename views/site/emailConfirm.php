@@ -25,7 +25,7 @@ $this->registerCssFile('@web/css/welcome.css', ['depends' => BootstrapAsset::cla
                 ]]) ?>
                 </div>
 
-          </div>
+            </div>
         </div>
       </div>
     </div>

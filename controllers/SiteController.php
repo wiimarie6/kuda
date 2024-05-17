@@ -118,6 +118,11 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionContacts()
+    {
+        return $this->render('contacts');
+    }
+
     public function actionWelcome()
     {
         $this->layout = 'withoutHeader';
@@ -230,11 +235,14 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionForgotPassword($token)
+    public function actionForgotPassword($token = null)
     {
         $this->layout = 'withoutHeader';
         $model = new ForgotPassword();
         $model->token = $token;
+        if (!$model->getUser()){
+            return $this->redirect('/site/welcome');
+        }
         if ($this->request->isPost && $model->load($this->request->post())){
             if ($model->changePassword()){
                 return $this->redirect('/site/');

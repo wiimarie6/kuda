@@ -2,6 +2,7 @@
 
 namespace app\modules\organizer\controllers;
 
+use app\models\CurrentPassword;
 use app\models\Event;
 use app\models\EventLikes;
 use app\models\EventUser;
@@ -10,8 +11,10 @@ use app\models\User;
 use mysqli;
 use Symfony\Component\VarDumper\VarDumper;
 use Yii;
+use yii\bootstrap5\ActiveForm;
 use yii\db\Query;
 use yii\web\Controller;
+use yii\web\Response;
 
 class AccountController extends Controller {
 
@@ -29,9 +32,12 @@ class AccountController extends Controller {
     // }
 
     public function actionIndex() {
+        $model = new CurrentPassword();
+
         $eventsOrg = Event::find()->where(['userId'=> Yii::$app->user->id])->count();
         return $this->render('index', [
             'eventsOrg' => $eventsOrg,
+            'model' => $model,
         ]);
     }
 
@@ -52,11 +58,18 @@ class AccountController extends Controller {
 
 public function actionDelete()
 {
-    $user = User::findOne(Yii::$app->user->id);
-    Yii::$app->user->logout();
-    $user->delete();
-    $this->redirect(['/site/welcome']);
+    $model = new \app\models\CurrentPassword();
+    if ($this->request->isPost && $model->load($this->request->post())) {
+            if (Yii::$app->request->isAjax) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($model);
+            }
+        if ($model->deleteAccount()) {
+            return $this->redirect("/site/welcome");
+        } else {
+
+            return $this->redirect("/account");
+        }
+    }
 }
-
-
 }

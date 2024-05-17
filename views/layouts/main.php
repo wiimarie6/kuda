@@ -42,6 +42,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Главная', 'url' => ['/site/index']],
+            ['label' => 'Контакты', 'url' => ['/site/contacts']],
             !Yii::$app->user->isGuest && !Yii::$app->user->identity->isOrganizer && !Yii::$app->user->identity->isAdmin ? ['label' => 'Профиль', 'url' => ['/account/']] : '',
             !Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin ? ['label' => 'Профиль', 'url' => ['/admin/account/']] : '',
             !Yii::$app->user->isGuest && Yii::$app->user->identity->isOrganizer ? ['label' => 'Профиль', 'url' => ['/organizer/account/']] : '',

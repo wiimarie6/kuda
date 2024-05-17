@@ -3,6 +3,7 @@ section {
 }
 body {
     background: url('./images/maain-bg.png') no-repeat ;
+    background-size: cover;
 }
 .event-section {
     display: flex;
@@ -27,14 +28,19 @@ body {
 }
 
 .btn-create-genre:hover {
-    border-radius: 120px;
-    background: none;
-    font-size:  var(--size-text);
-    font-weight: 500;
     color: #F8F2EB;
-    padding: 15px clamp( 20px, 5vw, 80px);
-    border: 1px solid  #F8F2EB;
+    background: inherit;
+    border: 1px solid #8C7040;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
 }
+
+.btn-create-genre:focus {
+    color: #F8F2EB;
+    background: inherit;
+    border: 1px solid #8C7040;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
+}
+
 
 .table > :not(caption) > * > * {
     background-color: transparent;
@@ -74,11 +80,26 @@ a {
     text-align: center;
 }
 
+.btn-update-genre:hover {
+    color: #F8F2EB;
+    background: inherit;
+    border: 1px solid #8C7040;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
+}
+
+.btn-update-genre:focus {
+    color: #F8F2EB;
+    background: inherit;
+    border: 1px solid #8C7040;
+    box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
+}
+
 .btn-delete-genre {
     color: #F8F2EB;
     padding: 10px;
     padding-left: clamp(20px, 3vw, 30px);
     padding-right: clamp(20px, 3vw, 30px);
+    border-radius: 126px;
 }
 
 .btn-back-genre {

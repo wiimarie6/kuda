@@ -51,7 +51,6 @@ class Event extends \yii\db\ActiveRecord
             [['genreId'], 'exist', 'skipOnError' => true, 'targetClass' => Genre::class, 'targetAttribute' => ['genreId' => 'id']],
             [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
             ['price', 'match', 'pattern' => "/^\d+$/", 'message' => 'В наименовании цены могут быть только цифры'],
-            ['', 'match', 'pattern' => "/^\d+$/", 'message' => 'В наименовании цены могут быть только цифры'],
         ];
     }
 

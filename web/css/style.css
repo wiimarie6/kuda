@@ -5,7 +5,7 @@
 
 
 :root{
-    --size-text: clamp(14px, 1.25vw ,24px);
+    --size-text: clamp(14px, 1.25vw ,22px);
     --size-title: clamp(24px, 2.5vw ,30px);
 }
 * {
@@ -73,7 +73,7 @@ h1, h2,h3, h4{
 }
 
 .form-control:focus {
-    color: inherit;
+    color: #F8F2EB;
     background: inherit;
     border: 1px solid #8C7040;
     box-shadow: 0 0 5px 5px rgba(140, 112, 64, .25);
@@ -305,7 +305,8 @@ form label {
     padding: 10px;
     padding-left: clamp(20px, 3vw, 30px);
     padding-right: clamp(20px, 3vw, 30px);
-    font-size: var(--size-text)
+    font-size: var(--size-text);
+    text-decoration: none;
 }
 
 .pagination {

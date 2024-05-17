@@ -1,6 +1,7 @@
 body {
     background: url('./images/maain-bg.png') no-repeat ;
     background-attachment: scroll;
+    background-size: cover;
 }
 
 .nav-link{

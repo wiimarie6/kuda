@@ -10,6 +10,7 @@
 }
 body {
     background:  #1C1B1B url("./images/background.png") no-repeat center;
+    background-size: cover;
 }
 
 .form-group {
@@ -41,7 +42,10 @@ body {
     cursor: pointer;
 }
 .is-valid ~ label::before {
-    background-color: #8C7040;
+    /* background-color: #8C7040; */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('./images/Vector.svg'); 
 }
 .field-user-terms label::before {
     content: '';

@@ -12,26 +12,31 @@ use app\models\User;
 use mysqli;
 use Symfony\Component\VarDumper\VarDumper;
 use Yii;
+use yii\bootstrap5\ActiveForm;
 use yii\db\Query;
 use yii\web\Controller;
+use yii\web\Response;
 
-class AccountController extends Controller {
+class AccountController extends Controller
+{
 
-    public function actions() {
+    public function actions()
+    {
         //TODO: Организатор
         if (Yii::$app->user->isGuest) {
             $this->goHome();
         }
     }
 
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $model = new CurrentPassword();
-        $eventsCount = EventUser::find()->where(['userId'=> Yii::$app->user->id])->count();
-        $likesCount = EventLikes::find()->where(['userId'=> Yii::$app->user->id])->count();
+        $eventsCount = EventUser::find()->where(['userId' => Yii::$app->user->id])->count();
+        $likesCount = EventLikes::find()->where(['userId' => Yii::$app->user->id])->count();
         $genreModel = new GenreUser();
         $genres = Genre::getGenres();
         $userGenres = GenreUser::getGenresByUser();
-        $genreSelectArray = GenreUser::find()->select('genreId')->where(['userId'=> Yii::$app->user->id])->asArray()->column();
+        $genreSelectArray = GenreUser::find()->select('genreId')->where(['userId' => Yii::$app->user->id])->asArray()->column();
         return $this->render('index', [
             'eventsCount' => $eventsCount,
             'likesCount' => $likesCount,
@@ -43,45 +48,55 @@ class AccountController extends Controller {
         ]);
     }
 
-    public function actionNewPassword($token)
-{
-    $model = new \app\models\NewPassword();
-    if ($model->load(Yii::$app->request->post())) {
-        if ($model->changePassword()) {
-         $this->redirect("/account/");
-            
+    public function actionNewPassword()
+    {
+        $model = new \app\models\NewPassword();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->changePassword()) {
+                $this->redirect("/account/");
+            }
         }
+
+        return $this->render('newPassword', [
+            'model' => $model,
+        ]);
+    }
+    public function actionGenres()
+    {
+        $model = new GenreUser();
+
+
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            if ($model->validate()) {
+                GenreUser::deleteAll(['userId' => Yii::$app->user->id]);
+                foreach ($model->selectedGenres as $key => $value) {
+                    $genreUserModel = new GenreUser();
+                    $genreUserModel->userId = Yii::$app->user->id;
+                    $genreUserModel->genreId = $value;
+                    $genreUserModel->save(false);
+                }
+            }
+        }
+        return $this->redirect('/account');
     }
 
-    return $this->render('newPassword', [
-        'model' => $model,
-    ]);
-}
-public function actionGenres(){
-    $model = new GenreUser();
+    public function actionDelete()
+    {
+        $model = new \app\models\CurrentPassword();
+        if ($this->request->isPost && $model->load($this->request->post())) {
 
+            $model->load(Yii::$app->request->post());
+            if (Yii::$app->request->isAjax) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($model);
+            }
 
-    if ($this->request->isPost && $model->load($this->request->post())){
-        if ($model->validate()){
-            GenreUser::deleteAll(['userId'=> Yii::$app->user->id]);
-            foreach ($model->selectedGenres as $key => $value) {
-                $genreUserModel = new GenreUser();
-                $genreUserModel->userId = Yii::$app->user->id;
-                $genreUserModel->genreId = $value;
-                $genreUserModel->save(false);
+            if ($model->deleteAccount()) {
+                return $this->redirect("/site/welcome");
+            } else {
+
+                return $this->redirect("/account");
             }
         }
     }
-    return $this->redirect('/account');
-}
-
-public function actionDelete()
-{
-    $model = new \app\models\CurrentPassword();
-    if ($this->request->isPost && $model->load($this->request->post())) {
-        if ($model->deleteAccount()) {
-            return $this->redirect("/site/welcome");
-        }
-    }
-}
 }

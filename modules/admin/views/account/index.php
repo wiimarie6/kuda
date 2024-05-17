@@ -46,7 +46,7 @@ Modal::begin([
 ]); ?>
 <div class="modal-button">
 
-<?= $form->field($model, 'currentPassword')->passwordInput() ?>
+<?= $form->field($model, 'currentPassword', ['enableAjaxValidation' => true])->passwordInput() ?>
 
   <div class="form-group">
     <?= Html::a('Отмена', '', ['class' => ' text text-underline', 'id' => 'delete-btn-cancel']) ?>

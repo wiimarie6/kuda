@@ -23,7 +23,7 @@ $this->registerCssFile('@web/css/account.css', ['depends' => BootstrapAsset::cla
                 <p class="text">Имя: <span class="account-text"><?= Html::encode($model->name)?></span></p>
                 <p class="text">Email: <span class="account-text"><?= Html::encode($model->email) ?></span></p>
                 <p class="text"><?=((Role::getRoleById($model->roleId) == 'Organizer') ? '' : 
-                Html::a('Сделать организатором', ['change-role', 'id' => $model->id], ['class' => 'text-underline text btn-change-role', 'data' => ['method' => 'post']]));?></p>
+                Html::a('Сделать организатором', ['change-role', 'id' => $model->id], ['class' => 'text-underline text btn-change-role']));?></p>
                 <p class="text"><?= Html::a('Удалить аккаунт', ['delete'], ['class' => 'text-underline text btn-delete']) ?></p>
                 <?php Pjax::end(); ?>
               </div>
