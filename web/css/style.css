@@ -23,6 +23,7 @@ h1, h2,h3, h4{
     padding: 0;
 }
 
+
 ::-webkit-scrollbar{
     width: 2px;
 }
@@ -117,6 +118,11 @@ form label {
     padding: 0 var(--bs-nav-link-padding-x);
     color: #8C7040;
     font-size: clamp(14px, 1.2vw, 20px);
+}
+
+.nav-link:is(:hover, :focus-visible, :active, :focus), .nav-link:any-link:hover{
+    color: #8C7040 !important;
+    border-bottom: 1px #8C7040 solid  !important;
 }
 .nav-link.active:any-link {
     color: #8C7040;

@@ -39,6 +39,8 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
 
     <?= $form->field($model, 'location')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'originalLink')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'imageFile')->fileInput() ?>
 
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>

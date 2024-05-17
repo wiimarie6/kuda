@@ -197,7 +197,7 @@ option {
 
 .event-container-info {
     gap: clamp(20px, 3vw, 40px);
-    flex: 1 1 auto;
+    flex: 1;
 }
 
 .event-title-view {

@@ -45,7 +45,8 @@ class Event extends \yii\db\ActiveRecord
             [['date', 'createdAt'], 'safe'],
             [['date'], 'datetime', 'format' => 'php:Y-m-d H:i:s'],
             [['genreId', 'userId'], 'integer'],
-            [['title', 'location', 'image', 'price'], 'string', 'max' => 255],
+            [['title', 'location', 'image', 'price', 'originalLink'], 'string', 'max' => 255],
+            ['originalLink', 'url'],
             ['description', 'string'],
             [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['userId' => 'id']],
             [['genreId'], 'exist', 'skipOnError' => true, 'targetClass' => Genre::class, 'targetAttribute' => ['genreId' => 'id']],
@@ -71,6 +72,7 @@ class Event extends \yii\db\ActiveRecord
             'createdAt' => 'Временная метка',
             'price' => 'Цена от (р)',
             'imageFile' => 'Прикрепите афишу',
+            'originalLink' => 'Ссылка на мероприятие',
         ];
     }
 

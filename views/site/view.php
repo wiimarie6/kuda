@@ -66,12 +66,18 @@ $this->registerCssFile('@web/css/event.css', ['depends' => BootstrapAsset::class
                 </div>
             </div>
         </div>
+        
+        <?php if (!empty($model->originalLink)): ?>
+        <div class="container-orig-link">
+            <a href="<?= $model->originalLink ?>"  target="_blank" class="event-subtitle">Ссылка на мероприятие</a>
+        </div>
+        <?php endif; ?>
         <div class="event-container-about">
                     <h5 class="event-subtitle">
                         Жанр:
                     </h5>
                     <p class="event-about "><?= Html::encode(Genre::getGenreById($model->genreId)) ?></p>
-                </div>
+        </div>
         <div class="event-container-artists">
             <h5 class="event-subtitle">Исполнители:</h5>
             <div class="event-artists-items d-flex flex-wrap align-items-center">
